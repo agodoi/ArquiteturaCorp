@@ -29,13 +29,13 @@ O assistente também criará um gateway NAT (Network Address Translation ou Conv
 
 Porque ele possui 3 importantes funções.
 
-## 1. Registrar nomes de domínio
+## 1. Registra nomes de domínio
 Seu site precisa de um nome, como example.com. O Route 53 permite que você registre um nome para seu site ou aplicação Web, conhecido como um nome de domínio.
 
-## 2. Rotear tráfego de Internet para os recursos do seu domínio
+## 2. Roteia tráfego de Internet para os recursos do seu domínio
 Quando um usuário abre um navegador da Web e informa seu nome de domínio (example.com) ou nome de subdomínio (acme.example.com) na barra de endereços, o Route 53 ajuda a conectar o navegador com o site ou a aplicação Web.
 
-## 3. Verificar a integridade de seus recursos
+## 3. Verifica a integridade de seus recursos
 O Route 53 envia solicitações automáticas através da Internet a um recurso, como um servidor Web, para verificar se está acessível, disponível e funcional. Você também pode optar por receber notificações quando um recurso se tornar indisponível e optar por desviar o tráfego da Internet dos recursos não íntegros.
 
 # Passo-01:
