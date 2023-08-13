@@ -25,6 +25,19 @@ Depois de criar a VPC, vamos adicionar sub-redes dentro de uma mesma zona de dis
 
 O assistente também criará um gateway NAT (Network Address Translation ou Conversão de Endereços de Rede) que é usado para fornecer conectividade com a Internet para instâncias do EC2 nas sub-redes privadas, mas a Internet não consegue acessar a instância EC2.
 
+# Por que criar um AWS Route 53?
+
+Porque ele possui 3 importantes funções.
+
+## 1. Registrar nomes de domínio
+Seu site precisa de um nome, como example.com. O Route 53 permite que você registre um nome para seu site ou aplicação Web, conhecido como um nome de domínio.
+
+## 2. Rotear tráfego de Internet para os recursos do seu domínio
+Quando um usuário abre um navegador da Web e informa seu nome de domínio (example.com) ou nome de subdomínio (acme.example.com) na barra de endereços, o Route 53 ajuda a conectar o navegador com o site ou a aplicação Web.
+
+## 3. Verificar a integridade de seus recursos
+O Route 53 envia solicitações automáticas através da Internet a um recurso, como um servidor Web, para verificar se está acessível, disponível e funcional. Você também pode optar por receber notificações quando um recurso se tornar indisponível e optar por desviar o tráfego da Internet dos recursos não íntegros.
+
 # Passo-01:
 
 a) Busque por VPC no console da AWS;
