@@ -71,6 +71,8 @@ Cada domínio criado no AWS gera um custo real de U$0,50 e por isso, não está 
 
 Embora seja pago, é importante você conhecer as etapas desse importante passo.
 
+Usando o goDaddy.com (que é um site criador de domínios pagos), o professor criou o domínio **aulaarquitetura.com** para testes.
+
 a) 
 
 # Passo-03: Criar um certificado https (essa etapa não poderá ser executada no Leaner Lab)
@@ -79,7 +81,7 @@ a) Digite **certificate manager** na lupa do console da AWS
 
 b) No menu vertical esquerdo, clique em **Solicitar certificado** e depois clique em **Solicitar um certificado público**
 
-c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02.
+c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02, que nesse exemplo foi **aulaarquitetura.com**
 
 
 
