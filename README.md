@@ -13,7 +13,7 @@ Amazon Route 53
 Cloud Front
 Redes VPC
 
-# Como criar uma VPC e por que?
+# Por que criar uma VPC?
 
 A VPC é uma rede virtual definida por você dentro da infra da AWS que permite executar, praticamente, todos os recursos disponíveis na AWS. Contudo, por exemplo, Amazon Route 53, Amazon CloudFront e AWS Direct Connect geralmente ficam de fora da VPC porque são serviços que se conectam para fora da AWS.
 
