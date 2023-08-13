@@ -19,8 +19,16 @@ A VPC é uma rede virtual definida por você dentro da infra da AWS que permite 
 
 Uma VPC pode abranger várias zonas de disponibilidade.
 
+Dentro da VPC, vamos criar um IGW (Internet Gateway), que permite a comunicação entre instâncias na VPC e a Internet externa.
 
-Dentro da VPC, vamos criar um IGW - Internet Gateway, que permite a comunicação entre instâncias na VPC e a Internet externa.
-Depois de criar a VPC, vamos adicionar sub-redes dentro de uma mesma zona de disponibilidade. Se o tráfego de uma sub-rede for roteado para um gateway da Internet, a sub-rede será chamada de sub-rede pública. Se a sub-rede não tiver uma rota para o gateway da Internet, ele será chamada de sub-rede privada.
+Depois de criar a VPC, vamos adicionar sub-redes dentro de uma mesma zona de disponibilidade. Se o tráfego de uma sub-rede for roteado para um gateway da Internet, a sub-rede será chamada de *sub-rede pública*. Se a sub-rede não tiver uma rota para o gateway da Internet, ele será chamada de *sub-rede privada*.
 
-O assistente também criará um gateway NAT, que é usado para fornecer conectividade com a Internet para instâncias do EC2 nas sub-redes privadas.
+O assistente também criará um gateway NAT (Network Address Translation ou Conversão de Endereços de Rede) que é usado para fornecer conectividade com a Internet para instâncias do EC2 nas sub-redes privadas, mas a Internet não consegue acessar a instância EC2.
+
+# Passo-01:
+
+a) Busque por VPC no console da AWS;
+
+b) Clique no botão laranja CRIAR;
+
+c) Selecione **VPC e muito mais**
