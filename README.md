@@ -71,7 +71,7 @@ Cada domínio criado no AWS gera um custo real de U$0,50 e por isso, não está 
 
 Embora seja pago, é importante você conhecer as etapas desse importante passo.
 
-Usando o site [goDaddy](goDaddy.com) (que é um site criador de domínios pagos), o professor criou o domínio **aulaarquitetura.com** para testes.
+Usando o site [goDaddy](https://www.godaddy.com/) (que é um site criador de domínios pagos), o professor criou o domínio **aulaarquitetura.com** para testes.
 
 a) 
 
