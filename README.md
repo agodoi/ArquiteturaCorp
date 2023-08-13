@@ -52,4 +52,11 @@ k) Em **Endpoints da VPC**, você pode escolher o **Gateway S3** para reduzir a 
 l) Você verá um fluxo de trabalho VPC que é na verdade um checklist com vários itens sendo criado.
 
 
+# Passo-02: Criação do Route 53 (essa etapa não poderá ser executada no Leaner Lab)
+
+Cada domínio criado no AWS gera um custo real de U$0,50 e por isso, não está disponível no Leaner Lab. No domínio particular da AWS, sim é possível criar um Route 53, mas precisa ter um cartão de crédito cadastrado para pagar os 50 centavos de dolar.
+
+
+
+
 
