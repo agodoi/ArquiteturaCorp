@@ -56,7 +56,13 @@ l) Você verá um fluxo de trabalho VPC que é na verdade um checklist com vári
 
 Cada domínio criado no AWS gera um custo real de U$0,50 e por isso, não está disponível no Leaner Lab. No domínio particular da AWS, sim é possível criar um Route 53, mas precisa ter um cartão de crédito cadastrado para pagar os 50 centavos de dolar.
 
+# Passo-03: Criar um certificado https (essa etapa não poderá ser executada no Leaner Lab)
 
+a) Digite **certificate manager** na lupa do console da AWS
+
+b) No menu vertical esquerdo, clique em **Solicitar certificado** e depois clique em **Solicitar um certificado público**
+
+c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02.
 
 
 
