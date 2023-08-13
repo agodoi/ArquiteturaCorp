@@ -32,3 +32,24 @@ a) Busque por VPC no console da AWS;
 b) Clique no botão laranja CRIAR;
 
 c) Selecione **VPC e muito mais**
+
+d) No campo **Gerar Automaticamente** digite **ArquiteturaCorp** e pule algumas configurações
+
+e) Bloco CIDR IPV4 deixa o 10.0.0.0/16 --> agora pense! O que isso significa?
+
+f) Na opção Bloco CIDR IPv6, deixe como **Nenhum bloco IPV6** que significa que não vamos criar subrede usando IPV6
+
+g) Em locação, deixe **padrão**
+
+h) Em **Número de zonas de disponibilizadas (AZs)** deixe em **2** e clicando em **Personalizar AZs**, note que as duas zonas disponíveis para você: **us-east-1a** e **us-east-1b**.
+
+i) Em **Número de sub-redes públicas** e **sub-redes privadas**, deixe **2** em cada. Note que à direita, você tem 4 sub-redes, sendo 2 privadas e 2 públicas e elas estão equitariamente distribuídas.
+em
+j) Em **Gateway NAT**, você pode escolher **nehum**, **Em 1 AZ** e **1 por AZ**. Esse item é cobrado já de cara. Então, vamos adotar o **Em 1 AZ**.
+
+k) Em **Endpoints da VPC**, você pode escolher o **Gateway S3** para reduzir a cobrança sobre o NAT.
+
+l) Você verá um fluxo de trabalho VPC que é na verdade um checklist com vários itens sendo criado.
+
+
+
