@@ -54,7 +54,11 @@ l) Você verá um fluxo de trabalho VPC que é na verdade um checklist com vári
 
 # Passo-02: Criação do Route 53 (essa etapa não poderá ser executada no Leaner Lab)
 
-Cada domínio criado no AWS gera um custo real de U$0,50 e por isso, não está disponível no Leaner Lab. No domínio particular da AWS, sim é possível criar um Route 53, mas precisa ter um cartão de crédito cadastrado para pagar os 50 centavos de dolar.
+Cada domínio criado no AWS gera um custo real de U$0,50 e por isso, não está disponível no Leaner Lab. Já no domínio particular da AWS, sim é possível criar um Route 53, mas precisa ter um cartão de crédito cadastrado para pagar os 50 centavos de dolar.
+
+Embora seja pago, é importante você conhecer as etapas desse importante passo.
+
+a) 
 
 # Passo-03: Criar um certificado https (essa etapa não poderá ser executada no Leaner Lab)
 
