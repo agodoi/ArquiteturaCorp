@@ -191,7 +191,7 @@ Agora, vá novamente na sua lista de Buckets e veja como está o **Acesso** na f
    <img alt="Podem Ser Públicos" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/podem_ser_publicos.png)">
 </picture>
 
-i) Agora, vamos gerar uma **política de bucket**, que vai liberar os acessos ao seu S3. Para isso, clique em **Permissões** do seu bucket e em, **Política do bucket**, clique em **Editar** e depois **Gerador de Políticas**. Daí você vai ver uma tela como a seguir:
+i) Agora, vamos gerar uma **Apólice do bucket**, que vai liberar os acessos ao seu S3. Para isso, clique em **Permissões** do seu bucket e em, **Política do bucket**, clique em **Editar** e depois **Gerador de Apólices**. Daí você vai ver uma tela como a seguir:
 
 
 <picture>
@@ -200,6 +200,29 @@ i) Agora, vamos gerar uma **política de bucket**, que vai liberar os acessos ao
 </picture>
 
 
+j) Em **Step 1 - Select Policy Type**, selecione **S3 Bucket Policy**, em **Step 2 - Add Statements(s)**, marque **Allow** em **Principal**, coloque asterisco para indicar qualquer objeto. Em **Actions** escolha **GetObjects** que serve para liberar acesso aos objetos do seu site, para aparecer na sua tela do navegador. Mas note que não será possível deletar, atualizar ou colocar nada (do CRUD, somente o R - Read estará liberado). No campo **ARN (Amazon Resource Name)** você pega lá no seu bucket na aba **Propriedades**. Tem que ser algo do tipo *arn:aws:s3:::arquiteturacorp*. MAS ATENÇÃO! Adicione um /* logo após seu ARN. Então ficaria algo assim:
+
+
+### arn:aws:s3:::arquiteturacorp/*
+
+Por fim, clique em **Add Statement** e depois, confirme em **Generate Policy** para gerar sua política. O resultado será um arquivo JSON com sua apólice, algo do tipo:
+```
+{
+  "Id": "Policy1692046481274",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1692046458290",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::arquiteturacorp/*",
+      "Principal": "*"
+    }
+  ]
+}
+```
 
 
 
