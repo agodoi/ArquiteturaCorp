@@ -191,4 +191,4 @@ Agora, vá novamente na sua lista de Buckets e veja como está o **Acesso** na f
    <img alt="Podem Ser Públicos" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/podem_ser_publicos.png)">
 </picture>
 
-
+i) Agora, vamos gerar uma política de bucket, que vai liberar os acessos ao seu S3.
