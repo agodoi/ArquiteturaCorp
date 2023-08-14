@@ -94,15 +94,6 @@ Usando o site [goDaddy](https://www.godaddy.com/) (que é um site criador de dom
 
 a) 
 
-# Passo-03: Criar um certificado https (essa etapa não poderá ser executada no Leaner Lab)
-
-a) Digite **certificate manager** na lupa do console da AWS
-
-b) No menu vertical esquerdo, clique em **Solicitar certificado** e depois clique em **Solicitar um certificado público**
-
-c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02, que nesse exemplo foi **aulaarquitetura.com**
-
-
 # Passo-04: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
 
@@ -244,4 +235,17 @@ K) Agora, basta você colocar um arquivo index.html dentro do seu S3 como se fos
 </picture>
 
 Agora você pode atualizar o seu link do S3 que o seu site estático estará no ar.
+
+
+## Agora você poderia entrar no serviço Route 53...
+
+para apontar o endereço http://arquiteturacorp.s3-website-us-east-1.amazonaws.com/ para o endereço pago **aulaarquitetura.com**. Note também que o site está como HTTP e não HTTPS. Para tornar o seu seu site seguraro com o protocolo HTTPS, precisa criar uma certificação...
+
+# Passo-extra: Criar um certificado https (essa etapa não poderá ser executada no Leaner Lab)
+
+a) Digite **certificate manager** na lupa do console da AWS
+
+b) No menu vertical esquerdo, clique em **Solicitar certificado** e depois clique em **Solicitar um certificado público**
+
+c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02, que nesse exemplo foi **aulaarquitetura.com**
 
