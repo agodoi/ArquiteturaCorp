@@ -40,13 +40,22 @@ O Route 53 envia solicitações automáticas através da Internet a um recurso, 
 
 # Por que criar uma instância S3?
 
-# Por que criar um LoudBalance?
+# Por que criar um Amazon Load Balance?
 
 # Por que criar um Bastion Host?
 
 # Por que criar um EC2?
 
 # Por que criar um RDS?
+
+# Fluxo:
+## Criar um domínio (exemplo, goDaddy ou [RegistroBr](https://registro.br/)
+## Registrar o domínio recém criado no Zonas de Hospedagem do Route 53 (custo de U$0,50/mês)
+## Regitrar os nomes dos servidores Route 53 no GoDaddy
+## Criar um certificado público https no Certificate Manage para o domínio goDaddy
+## Abrir um serviço S3 para um site estático
+## CloudFront
+
 
 # Passo-01:
 
@@ -94,4 +103,66 @@ b) No menu vertical esquerdo, clique em **Solicitar certificado** e depois cliqu
 c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02, que nesse exemplo foi **aulaarquitetura.com**
 
 
+# Passo-04: Criando um serviço S3
+## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
+
+a) Digite S3 na lupa do console.
+
+b) Clique em **Criar bucket** (botão laranja).
+
+c) No campo **Nome do bucket** digite **arquiteturacorp**. Mas atenção: não pode ter letras maiúsculas e nem começar o nome com número.
+
+d) Em região, aponte para o **us-east-1**.
+
+e) Deixa todas as demais configurações básicas como estão e clique no botão laranja **Criar bucket**.
+
+f) Retorne em suas instâncias de buckets e clique no bucket que você acabou de criar (link azul) para configurá-los. Note que ele está como **Bucket e objetos não públicos**.
+
+f.1) Dentro das configurações do Bucket, procure pela aba **Propriedades**, vá até o final da página e em **Hospedagem de site estático**, clique em **Editar** e depois, **ativar**.
+
+f.2) Em **Tipo de hospedagem** deixe em **Hospedar um site estático**.
+
+f.3) Em **Documento de índice** coloque o nome do arquivo-fonte do seu site, que nesse caso, pode ser **index.html**. Você deve salvar esse código abaixo em arquivo texto tipo *html* e vai usar numa etapa futura, não agora. Então, apenas salve esse código num arquivo **index.html** aí no seu HD local.
+
+``
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>Calculadora</title>		
+		<script src="calculadora.js"></script>
+	</head>
+	<body bgcolor="beige">
+		<h1>Calculadora 1.0</h1>
+		<input type="text" id="txtValor1">
+			<select id="operadores" onchange="ControleDeSelecao();">
+				<optgroup label="Basico">
+					<option value="+">	+(somar)</option>
+					<option value="-">	-(subtrair)</option>
+					<option value="*">	*(multiplicar)</option>
+					<option value="/">	/(dividir)</option>
+				</optgroup>
+				<optgroup label="Outros">
+					<option value="raiz">	 	  Raiz	</option>
+					<option value="potencia">	Potência</option>
+					<option value="fatorial">	Fatorial</option>
+					<option value="fibonacci">Fibonaci</option>					
+					<option value="porcento">	Porcentagem</option>
+					<option value="media">		Média</option>
+					<option value="calc">		  Develop Calc</option>
+				</optgroup>
+			</select>
+		<input type="text" id="txtValor2" size="5"><br>		
+		<input type="button" onclick="Calcular('txtValor1', 'txtValor2')" value="Calcular">
+		<input type="button" onclick="Limpar('txtValor1', 'txtValor2')" value="Limpar">
+		<p id="saida">Resultado:</p>
+		<hr>		
+	</body>
+</html>
+
+``
+
+f.4) No campo **Documento de erro - opcional** você pode deixar em branco ou elaborar uma página personalizada para quando der um erro em seu site. Para hoje, deixe esse campo em branco
+
+f.5) Clique no botão
 
