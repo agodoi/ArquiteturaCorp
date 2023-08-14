@@ -224,5 +224,6 @@ Por fim, clique em **Add Statement** e depois, confirme em **Generate Policy** p
 }
 ```
 
+### Observe que seu bucket agora está público, e com um ícone de atenção.
 
 
