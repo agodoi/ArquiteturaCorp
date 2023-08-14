@@ -27,7 +27,7 @@ O assistente também criará um gateway NAT (Network Address Translation ou Conv
 
 # Por que criar um AWS Route 53?
 
-Porque ele possui 3 importantes funções.
+É um **serviço** com 3 importantes funções:
 
 ## 1. Registra nomes de domínio
 Seu site precisa de um nome, como example.com. O Route 53 permite que você registre um nome para seu site ou aplicação Web, conhecido como um nome de domínio.
@@ -161,7 +161,14 @@ f.3) Em **Documento de índice** coloque o nome do arquivo-fonte do seu site, qu
 </html>
 ```
 
-f.4) No campo **Documento de erro - opcional** você pode deixar em branco ou elaborar uma página personalizada para quando der um erro em seu site. Para hoje, deixe esse campo em branco
+f.4) No campo **Documento de erro - opcional** você pode deixar em branco ou elaborar uma página personalizada para quando der um erro em seu site ou até usar a mesma arquivo **index.html**. Para hoje, deixe esse campo em branco
 
-f.5) Clique no botão
+f.5) Clique no botão laranja no final da página para confirmar.
+
+g) Você pode carregar um arquivo qualquer no seu S3, clicando em **Objetos**. E ainda pode criar uma pasta qualquer chamada **Teste**. Então, suba um arquivo qualquer e crie uma pasta qualquer em seu S3. Veja a figura a seguir que demonstra como fica o seu HD virtual lá na AWS.
+
+<picture>
+   <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/objetos.png">
+   <img alt="Objetos" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/objetos.png)">
+</picture>
 
