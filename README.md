@@ -184,7 +184,7 @@ h) Nessa etapa, vamos definir as permissões de acesso ao S3. Por padrão, ele t
    <img alt="Confirmação" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/confirmacao_desbloqueio.png)">
 </picture>
 
-Agora, vá novamente na sua lista de Buckets e veja como está o **status** na frente do seu bucket. Ele deve estar assim: **Os objetos podem ser públicos**, igual ao da imagem abaixo:
+Agora, vá novamente na sua lista de Buckets e veja como está o **Acesso** na frente do seu bucket. Ele deve estar assim: **Os objetos podem ser públicos**, igual ao da imagem abaixo:
 
 <picture>
    <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/podem_ser_publicos.png">
