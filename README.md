@@ -124,7 +124,6 @@ f.2) Em **Tipo de hospedagem** deixe em **Hospedar um site estático**.
 
 f.3) Em **Documento de índice** coloque o nome do arquivo-fonte do seu site, que nesse caso, pode ser **index.html**. Você deve salvar esse código abaixo em arquivo texto tipo *html* e vai usar numa etapa futura, não agora. Então, apenas salve esse código num arquivo **index.html** aí no seu HD local.
 
-``
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -159,8 +158,6 @@ f.3) Em **Documento de índice** coloque o nome do arquivo-fonte do seu site, qu
 		<hr>		
 	</body>
 </html>
-
-``
 
 f.4) No campo **Documento de erro - opcional** você pode deixar em branco ou elaborar uma página personalizada para quando der um erro em seu site. Para hoje, deixe esse campo em branco
 
