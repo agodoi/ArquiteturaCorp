@@ -92,9 +92,7 @@ Embora seja pago, é importante você conhecer as etapas desse importante passo.
 
 Usando o site [goDaddy](https://www.godaddy.com/) (que é um site criador de domínios pagos), o professor criou o domínio **aulaarquitetura.com** para testes.
 
-a) 
-
-# Passo-04: Criando um serviço S3
+# Passo-03: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
 
 a) Digite S3 na lupa do console.
@@ -248,4 +246,13 @@ a) Digite **certificate manager** na lupa do console da AWS
 b) No menu vertical esquerdo, clique em **Solicitar certificado** e depois clique em **Solicitar um certificado público**
 
 c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02, que nesse exemplo foi **aulaarquitetura.com**
+
+
+# Passo-04: Criando uma CloudFront
+## Serve para manter dados do site em cache, aumentar velocidade e minimizar latências ao redor do mundo
+
+Sua principal função é melhorar a velocidade e a disponibilidade de entrega de conteúdo, como imagens, vídeos, scripts e outros arquivos, aos usuários finais em diferentes regiões do mundo.
+
+Ao usar o CloudFront, os arquivos são armazenados em pontos de presença globais da AWS, chamados de "edge locations". Quando um usuário solicita um arquivo, o CloudFront direciona essa solicitação para o servidor de *edge location* mais próximo do usuário, o que reduz a latência e melhora a velocidade de carregamento do conteúdo. Além disso, o CloudFront ajuda a reduzir a carga nos servidores de origem, pois ele armazena em cache os arquivos e responde diretamente a solicitações subsequentes que podem ser atendidas a partir desses caches.
+
 
