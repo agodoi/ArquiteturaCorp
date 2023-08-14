@@ -38,6 +38,16 @@ Quando um usuário abre um navegador da Web e informa seu nome de domínio (exam
 ## 3. Verifica a integridade de seus recursos
 O Route 53 envia solicitações automáticas através da Internet a um recurso, como um servidor Web, para verificar se está acessível, disponível e funcional. Você também pode optar por receber notificações quando um recurso se tornar indisponível e optar por desviar o tráfego da Internet dos recursos não íntegros.
 
+# Por que criar uma instância S3?
+
+# Por que criar um LoudBalance?
+
+# Por que criar um Bastion Host?
+
+# Por que criar um EC2?
+
+# Por que criar um RDS?
+
 # Passo-01:
 
 a) Busque por VPC no console da AWS;
