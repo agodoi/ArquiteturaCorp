@@ -395,6 +395,8 @@ Por fim, clique em **Add Statement** e depois, confirme em **Generate Policy** p
 }
 ```
 
+Agora, dê um Ctrl+C nesse JSON para você levar lá no bucket criado e editar a **Permissões** dele. Vá na aba **Permissões** do seu Bucket, clique em **Política do bucket** e cole esse JSON lá e confirme no SALVAR.
+
 ### Observe que seu bucket agora está público, e com um ícone de atenção.
 
 Para fazer um teste, acesse o link do seu S3 e verá que o erro terá mudado agora. Ele está acessível externamente, mas não tem o arquivo **index.html**. Veja a imagem a seguir para entender melhor.
