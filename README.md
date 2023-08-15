@@ -16,7 +16,7 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
   
 * O ALB é um distribuidor de cargas e acessos.
   
-* O Bastion Host atua como um único ponto de acesso público e de administração dos EC2s.
+* O Bastion Host atua como um único ponto de acesso público e de administração dos EC2s. Você acessa o Bastion host e depois você abre uma conexão SSH com o respectivo EC2 dentro da AWS.
   
 * O RDS é o banco de dados.
 
