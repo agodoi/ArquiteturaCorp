@@ -172,27 +172,45 @@ O bastion host permite que você acesse instâncias internas sem expor diretamen
 
 Amazon Elastic Compute Cloud (EC2) é um serviço de computação em nuvem oferecido pela Amazon Web Services (AWS) que fornece capacidade de processamento escalável na nuvem. Há várias vantagens em usar o EC2 na AWS, tornando-o uma escolha popular para hospedar aplicativos e executar cargas de trabalho em nuvem. Algumas das principais vantagens incluem:
 
-1. **Escalabilidade Sob Demanda**: O EC2 permite escalar verticalmente (aumentar ou diminuir recursos em uma única instância) e horizontalmente (adicionar ou remover instâncias) de acordo com as demandas da sua aplicação. Isso proporciona flexibilidade para lidar com picos de tráfego e variações de carga de trabalho.
+### 1. Escalabilidade Sob Demanda: 
 
-2. **Configuração Personalizável**: O EC2 oferece uma variedade de tipos de instância com diferentes quantidades de CPU, memória, armazenamento e capacidades de rede. Isso permite escolher a configuração de hardware mais adequada para atender aos requisitos da sua aplicação.
+O EC2 permite escalar verticalmente (aumentar ou diminuir recursos em uma única instância) e horizontalmente (adicionar ou remover instâncias) de acordo com as demandas da sua aplicação. Isso proporciona flexibilidade para lidar com picos de tráfego e variações de carga de trabalho.
 
-3. **Diversidade de SO e Software**: Você pode escolher entre uma variedade de sistemas operacionais (Windows, Linux, etc.) e instalar o software necessário em suas instâncias EC2. Isso permite executar uma ampla gama de aplicativos e serviços.
+### 2. Configuração Personalizável: 
 
-4. **Pagamento por Uso**: O modelo de preços do EC2 é baseado no pagamento por uso. Você paga apenas pelas instâncias que provisiona e pelo tempo em que elas estão em execução. Isso permite reduzir custos operacionais, já que você não precisa investir em hardware dedicado.
+O EC2 oferece uma variedade de tipos de instância com diferentes quantidades de CPU, memória, armazenamento e capacidades de rede. Isso permite escolher a configuração de hardware mais adequada para atender aos requisitos da sua aplicação.
 
-5. **Acesso Administrativo Completo**: Você tem controle total sobre suas instâncias EC2, o que permite personalizar a configuração, instalar software, realizar atualizações e configurar a segurança de acordo com suas necessidades.
+### 3. Diversidade de SO e Software: 
 
-6. **Integração com Outros Serviços AWS**: O EC2 é facilmente integrado a outros serviços da AWS, como o Amazon RDS (banco de dados relacional), Amazon S3 (armazenamento em nuvem), Amazon VPC (rede virtual privada) e muitos outros. Isso permite construir soluções completas e integradas na nuvem.
+Você pode escolher entre uma variedade de sistemas operacionais (Windows, Linux, etc.) e instalar o software necessário em suas instâncias EC2. Isso permite executar uma ampla gama de aplicativos e serviços.
 
-7. **Alta Disponibilidade e Redundância**: O EC2 permite criar instâncias em várias zonas de disponibilidade, proporcionando resiliência contra falhas de hardware ou problemas em data centers específicos.
+### 4. Pagamento por Uso: 
 
-8. **Autoscaling**: O EC2 permite configurar políticas de escalonamento automático para adicionar ou remover instâncias com base nas métricas de desempenho. Isso ajuda a manter o desempenho da aplicação durante flutuações de carga.
+O modelo de preços do EC2 é baseado no pagamento por uso. Você paga apenas pelas instâncias que provisiona e pelo tempo em que elas estão em execução. Isso permite reduzir custos operacionais, já que você não precisa investir em hardware dedicado.
 
-9. **Backup e Recuperação**: Você pode criar imagens (AMIs) das suas instâncias EC2, o que facilita a criação de backups e a replicação de ambientes para recuperação de desastres.
+### 5. Acesso Administrativo Completo: 
 
-10. **Desenvolvimento e Testes**: O EC2 é frequentemente usado para ambientes de desenvolvimento e testes, pois permite criar rapidamente ambientes sob medida e replicáveis para testar código e recursos sem afetar a infraestrutura de produção.
+Você tem controle total sobre suas instâncias EC2, o que permite personalizar a configuração, instalar software, realizar atualizações e configurar a segurança de acordo com suas necessidades.
 
-Essas são apenas algumas das vantagens do uso do Amazon EC2 na AWS. A escolha de usá-lo dependerá das necessidades específicas da sua aplicação, do nível de controle que você deseja e dos requisitos de escalabilidade, desempenho e segurança.
+### 6. Integração com Outros Serviços AWS: 
+
+O EC2 é facilmente integrado a outros serviços da AWS, como o Amazon RDS (banco de dados relacional), Amazon S3 (armazenamento em nuvem), Amazon VPC (rede virtual privada) e muitos outros. Isso permite construir soluções completas e integradas na nuvem.
+
+### 7. Alta Disponibilidade e Redundância: 
+
+O EC2 permite criar instâncias em várias zonas de disponibilidade, proporcionando resiliência contra falhas de hardware ou problemas em data centers específicos.
+
+### 8. Autoscaling: 
+
+O EC2 permite configurar políticas de escalonamento automático para adicionar ou remover instâncias com base nas métricas de desempenho. Isso ajuda a manter o desempenho da aplicação durante flutuações de carga.
+
+### 9. Backup e Recuperação: 
+
+Você pode criar imagens (AMIs) das suas instâncias EC2, o que facilita a criação de backups e a replicação de ambientes para recuperação de desastres.
+
+### 10. Desenvolvimento e Testes: 
+
+O EC2 é frequentemente usado para ambientes de desenvolvimento e testes, pois permite criar rapidamente ambientes sob medida e replicáveis para testar código e recursos sem afetar a infraestrutura de produção.
 
 # Por que criar um RDS?
 
