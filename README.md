@@ -305,7 +305,7 @@ a) Digite S3 na lupa do console.
 
 b) Clique em **Criar bucket** (botão laranja).
 
-c) No campo **Nome do bucket** digite **S3ArquiteturaCorp**. Mas atenção: não pode ter letras maiúsculas e nem começar o nome com número.
+c) No campo **Nome do bucket** digite algor parecido com **S3ArquiteturaCorp** (porque os buckets possuem nome exclusivo). Mas atenção: não pode ter letras maiúsculas e nem começar o nome com número.
 
 d) Em região, aponte para o **us-east-1**.
 
