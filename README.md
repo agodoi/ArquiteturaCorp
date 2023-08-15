@@ -9,6 +9,16 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
 
 Nessa arquitetura, o S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, não precisaremos do EC2. Contudo, o S3 na arquitetura corporativa se posiciona mais como um serviço de armazenamento de dados enquanto o EC2 se posiciona como servidor.
 
+O Bastion Host atua como um único ponto de acesso e administração dos EC2s.
+
+O RDS é o banco de dados.
+
+O LBA é um distribuidor de cargas e acessos.
+
+Route 53 é o conversor do link S3 ou EC2 interno AWS (com vários caracteres) para um DNS amigável que você compra na Internet.
+
+
+
 # Por que criar uma VPC?
 
 ### 1. Rede Virtual Segura:
