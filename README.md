@@ -214,6 +214,48 @@ O EC2 é frequentemente usado para ambientes de desenvolvimento e testes, pois p
 
 # Por que criar um RDS?
 
+Amazon RDS (Relational Database Service) é um serviço gerenciado de bancos de dados relacionais. Vantagens:
+
+### 1. Facilidade de Gerenciamento: 
+
+O RDS gerencia tarefas operacionais complexas, como provisionamento de hardware, instalação de software, patches, backups e recuperação de dados. Isso permite que você se concentre mais no desenvolvimento de aplicativos e menos na administração do banco de dados.
+
+### 2. Escalabilidade Vertical e Horizontal: 
+
+O RDS permite dimensionar verticalmente (aumentar recursos da instância) e horizontalmente (adicionar réplicas de leitura) para lidar com o aumento da carga de trabalho, garantindo o desempenho e a disponibilidade do banco de dados.
+
+### 3. Backup e Recuperação Automatizados: 
+
+O RDS oferece backups automáticos diários e permite a retenção de backups por um período específico. Além disso, você pode criar snapshots manuais para momentos específicos. Isso facilita a recuperação de dados em caso de falhas.
+
+### 4. Alta Disponibilidade e Failover: 
+
+O RDS permite criar réplicas de leitura para distribuir a carga de leitura e fornecer redundância. Além disso, em bancos de dados multi-AZ, o RDS automaticamente realiza failover para uma instância de backup em caso de falhas na instância primária.
+
+### 5. Atualizações de Software Gerenciadas: 
+
+O RDS gerencia automaticamente as atualizações de software e patches do banco de dados, permitindo que você mantenha seus bancos de dados atualizados sem interrupções significativas.
+
+### 6. Segurança Avançada: 
+
+O RDS oferece várias camadas de segurança, incluindo a possibilidade de executar bancos de dados em uma VPC (Virtual Private Cloud), criptografia de dados em repouso e em trânsito, e integração com a AWS Identity and Access Management (IAM).
+
+### 7. Monitoramento e Métricas: 
+
+O RDS fornece métricas de desempenho e permite configurar alertas para monitorar a saúde e o desempenho do banco de dados. Também é possível usar serviços como o Amazon CloudWatch para obter insights detalhados sobre o desempenho.
+
+### 8. Compatibilidade com Diferentes Bancos de Dados: 
+
+O RDS oferece suporte a vários bancos de dados relacionais populares, como MySQL, PostgreSQL, Oracle, SQL Server e MariaDB. Isso permite que você escolha a tecnologia que melhor se adapta às suas necessidades.
+
+### 9. Gerenciamento Simplificado de Multi-AZ: 
+
+Ao usar o RDS em uma configuração de várias zonas de disponibilidade (Multi-AZ), o sistema gerencia automaticamente a replicação, failover e recuperação em caso de falhas.
+
+### 10. Compatibilidade com Ferramentas e Aplicativos: 
+
+O RDS é compatível com muitas ferramentas e aplicativos que são usados com bancos de dados relacionais, facilitando a migração de aplicações existentes para a nuvem.
+
 # Fluxo:
 ## Criar um domínio (exemplo, goDaddy ou [RegistroBr](https://registro.br/)
 ## Registrar o domínio recém criado no Zonas de Hospedagem do Route 53 (custo de U$0,50/mês)
