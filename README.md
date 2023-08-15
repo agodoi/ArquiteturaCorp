@@ -10,7 +10,7 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
 
 * Route 53 é o conversor do link S3 ou EC2 interno AWS (com vários caracteres) para um DNS amigável que você compra na Internet.
 
-* CloudFront serve para deixar sua aplicação em cache ao redor do mundo.
+* CloudFront serve para deixar sua aplicação em *cache* ao redor do mundo.
 
 * O S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, não precisaremos do EC2. Contudo, o S3 na arquitetura corporativa se posiciona mais como um serviço de armazenamento de dados enquanto o EC2 se posiciona como servidor.
   
@@ -19,10 +19,6 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
 * O Bastion Host atua como um único ponto de acesso e administração dos EC2s.
   
 * O RDS é o banco de dados.
-
-
-
-
 
 
 # Por que criar uma VPC?
@@ -474,5 +470,24 @@ c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domí
 Sua principal função é melhorar a velocidade e a disponibilidade de entrega de conteúdo, como imagens, vídeos, scripts e outros arquivos, aos usuários finais em diferentes regiões do mundo.
 
 Ao usar o CloudFront, os arquivos são armazenados em pontos de presença globais da AWS, chamados de "edge locations". Quando um usuário solicita um arquivo, o CloudFront direciona essa solicitação para o servidor de *edge location* mais próximo do usuário, o que reduz a latência e melhora a velocidade de carregamento do conteúdo. Além disso, o CloudFront ajuda a reduzir a carga nos servidores de origem, pois ele armazena em cache os arquivos e responde diretamente a solicitações subsequentes que podem ser atendidas a partir desses caches.
+
+a) Fala uma busca por **CloudFront** na lupa do console.
+
+b) Clique em **Create Distribution** (botão laranja).
+
+c) No campo **Origin Domain** você seleciona o bucket criado no Passo-03, e daí o console vai sugerir uma adaptação **Use website endpoint**, daí você pode confirmar no botão. O link resultante deve ser algo do tipo **arquiteturacorp.s3-website-us-east-1.amazonaws.com** e o protocolo marcado será o **HTTP**. Não teremos o **HTTPS** porque teríamos que ter um Certificado sobre o DNS externo que você compraria.
+
+d) Na opção **Web Application Firewall (WAF)** opte por **Enable security protections**.
+
+e) Em **Default root object - optional**, aponte para o arquivo **index.html**. Com isso, o CloudFonte vai distribuir o seu pequeno servidor.
+
+e) Confirme tudo no botão laranja.
+
+As demais configurações, como em **Viewer** e **Viewer protocol policy**, você poderia marcar a opçção **Redirect HTTP to HTTPS** caso você quisesse forçar toda a conexão do seu site para HTTPS, mas para isso, você precisa do certificado validado sobre o seu domínio comprado na goDaddy, por exemplo.
+
+Em **Allowed HTTP methods**, você pode deixar o GET, HEAD, mas se fosse para executar um CRUD, terá que colocar a opção **GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE**.
+
+Se você tiver um certicado validado, puxe esse certificado na opção **Custom SSL certificate - optional**
+
 
 
