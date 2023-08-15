@@ -489,8 +489,14 @@ O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo
 
 a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPCArquiteturaCorp**.
 
-b) No campo **Nome da sub-rede** coloque **MinhaSubRedePublica.
+b) No campo **Nome da sub-rede** coloque **MinhaSubRedePublicaArqCorp**.
 
 c) Em **Zona de disponibilidade** deixe **sem preferência**.
 
 e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 10.0.1.0/24**
+
+f) Agora vamos criar uma tabela de rotas na Subrede pública. Então, no menu vertical da VPC, procure por **Tabela de rotas** e clique em **Criar**.
+
+f.1) Em **Nome-opcional** digite **TabRotaPubArqCorp** e em VPC, escolha a **VPCArquiteturaCorp** e confirma.
+
+g) Agora vamos criar uma saída para Internet para essa subrede pública poder ser visível. Então, no menu vertical esquerdo, clique em **Gateways da Internet** e em **Tag name** digite **IGWArqCorp** e confirme no botão laranja.
