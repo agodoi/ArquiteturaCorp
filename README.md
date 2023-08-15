@@ -395,12 +395,14 @@ Por fim, clique em **Add Statement** e depois, confirme em **Generate Policy** p
 }
 ```
 
-Agora, dê um Ctrl+C nesse JSON para você levar lá no bucket criado e editar a **Permissões** dele. Vá na aba **Permissões** do seu Bucket, clique em **Política do bucket** e cole esse JSON lá e confirme no SALVAR. Veja a figura a seguir para entender melhor.
+Agora, dê um Ctrl+C nesse JSON para você levar lá no bucket criado e editar a **Permissões** dele. 
 
 <picture>
    <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ArquiteturaCorp/blob/main/imgs/gerador_politica-2.png">
    <img alt="Gerador de Política" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ArquiteturaCorp/blob/main/imgs/gerador_politica-2.png)">
 </picture>
+
+Vá na aba **Permissões** do seu Bucket, clique em **Política do bucket** e cole esse JSON lá e confirme no SALVAR. Veja a figura a seguir para entender melhor.
 
 ### Observe que seu bucket agora está público, e com um ícone de atenção.
 
