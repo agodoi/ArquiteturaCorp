@@ -15,13 +15,17 @@ Redes VPC
 
 # Por que criar uma VPC?
 
+### 1. Rede Virtual Segura:
+
 A VPC é uma rede virtual definida por você dentro da infra da AWS que permite executar, praticamente, todos os recursos disponíveis na AWS. Contudo, por exemplo, Amazon Route 53, Amazon CloudFront e AWS Direct Connect geralmente ficam de fora da VPC porque são serviços que se conectam para fora da AWS.
+
+### 2. Disponibilidade:
 
 Uma VPC pode abranger várias zonas de disponibilidade.
 
-Dentro da VPC, vamos criar um IGW (Internet Gateway), que permite a comunicação entre instâncias na VPC e a Internet externa.
+### 3. Conectividade:
 
-Depois de criar a VPC, vamos adicionar sub-redes dentro de uma mesma zona de disponibilidade. Se o tráfego de uma sub-rede for roteado para um gateway da Internet, a sub-rede será chamada de *sub-rede pública*. Se a sub-rede não tiver uma rota para o gateway da Internet, ele será chamada de *sub-rede privada*.
+Dentro da VPC, vamos criar um IGW (Internet Gateway), que permite a comunicação entre instâncias na VPC e a Internet externa. Depois de criar a VPC, vamos adicionar sub-redes dentro de uma mesma zona de disponibilidade. Se o tráfego de uma sub-rede for roteado para um gateway da Internet, a sub-rede será chamada de *sub-rede pública*. Se a sub-rede não tiver uma rota para o gateway da Internet, ele será chamada de *sub-rede privada*.
 
 O assistente também criará um gateway NAT (Network Address Translation ou Conversão de Endereços de Rede) que é usado para fornecer conectividade com a Internet para instâncias do EC2 nas sub-redes privadas, mas a Internet não consegue acessar a instância EC2.
 
@@ -82,8 +86,47 @@ O S3 pode ser usado para criar backups de dados importantes e atuar como uma sol
 
 A AWS oferece uma ampla gama de SDKs e ferramentas para facilitar a integração do S3 em aplicativos e sistemas existentes.
 
-
 # Por que criar um Amazon Load Balance?
+
+### 1. Distribuição de Tráfego: 
+
+Um balanceador de carga distribui o tráfego de entrada entre várias instâncias (ou recursos) em diferentes zonas de disponibilidade. Isso ajuda a evitar a sobrecarga de um único recurso e garante que o tráfego seja distribuído de forma equilibrada para garantir melhor desempenho.
+
+### 2. Alta Disponibilidade: 
+
+Os balanceadores de carga da AWS são projetados para alta disponibilidade. Se uma instância ou zona de disponibilidade falhar, o balanceador de carga redireciona automaticamente o tráfego para instâncias saudáveis, garantindo que a aplicação permaneça acessível.
+
+### 3. Escalabilidade: 
+
+Os balanceadores de carga facilitam a escalabilidade horizontal, permitindo adicionar ou remover instâncias conforme necessário para lidar com variações de carga. Isso ajuda a manter o desempenho da aplicação mesmo durante picos de tráfego.
+
+### 4. Detecção de Saúde: 
+
+Os balanceadores de carga monitoram constantemente a saúde das instâncias que estão sendo balanceadas. Caso uma instância falhe ou se torne inacessível, o balanceador de carga deixa de enviar tráfego para essa instância até que ela esteja novamente saudável.
+
+### 5. SSL/TLS Termination: 
+
+Os balanceadores de carga podem lidar com o termino de SSL/TLS, descarregando o trabalho de criptografia e descriptografia das instâncias de back-end. Isso ajuda a melhorar o desempenho das instâncias e simplifica a implantação de certificados SSL/TLS.
+
+### 6. Distribuição Geográfica: 
+
+Alguns balanceadores de carga permitem a distribuição geográfica do tráfego, redirecionando os usuários para instâncias próximas a sua localização geográfica. Isso ajuda a melhorar o desempenho e a latência para os usuários em diferentes regiões.
+
+### 7. Redirecionamento de Portas: 
+
+Os balanceadores de carga podem redirecionar o tráfego de diferentes portas para instâncias específicas, permitindo que você execute várias aplicações ou serviços em portas diferentes nas mesmas instâncias.
+
+### 8. Logs e Métricas: 
+
+Os balanceadores de carga registram informações sobre o tráfego, permitindo monitorar e analisar padrões de acesso, além de fornecer métricas para otimização de desempenho e escalabilidade.
+
+### 9. Integração com Serviços AWS: 
+
+Os balanceadores de carga podem ser integrados com outros serviços da AWS, como Auto Scaling e Amazon ECS, para criar arquiteturas altamente escaláveis e dinâmicas.
+
+### 10. Segurança: 
+
+Os balanceadores de carga podem ajudar a proteger sua infraestrutura, pois atuam como um ponto de entrada único e ocultam as instâncias de back-end, reduzindo a exposição a ameaças.
 
 # Por que criar um Bastion Host?
 
