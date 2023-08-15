@@ -16,7 +16,7 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
   
 * O ALB é um distribuidor de cargas e acessos.
   
-* O Bastion Host atua como um único ponto de acesso público e de administração dos EC2s. Você acessa o Bastion host e depois você abre uma conexão SSH com o respectivo EC2 dentro da AWS.
+* O Bastion Host atua como um único ponto de acesso público para administrar a sua rede privada com os EC2s. Você acessa o Bastion host e depois você abre uma conexão SSH com o respectivo EC2 dentro da AWS. Portanto, o Bastion Host se posiciona na subrede pública para ter acesso à subrede privada. 
   
 * O RDS é o banco de dados.
 
@@ -279,11 +279,11 @@ a) Busque por VPC no console da AWS;
 
 b) Clique no botão laranja CRIAR;
 
-c) Selecione **VPC e muito mais**
+c) Selecione **VPC e muito mais**.
 
-d) No campo **Gerar Automaticamente** digite **ArquiteturaCorp** e pule algumas configurações
+d) No campo **Gerar Automaticamente** digite **ArquiteturaCorp** e pule algumas configurações.
 
-e) Bloco CIDR IPV4 deixa o 10.0.0.0/16 --> agora pense! O que isso significa?
+e) Bloco CIDR IPV4 deixa o 10.0.0.0/16 --> agora pense! O que isso significa? Já vimos sobre isso...
 
 f) Na opção Bloco CIDR IPv6, deixe como **Nenhum bloco IPV6** que significa que não vamos criar subrede usando IPV6
 
@@ -293,7 +293,7 @@ h) Em **Número de zonas de disponibilizadas (AZs)** deixe em **2** e clicando e
 
 i) Em **Número de sub-redes públicas** e **sub-redes privadas**, deixe **2** em cada. Note que à direita, você tem 4 sub-redes, sendo 2 privadas e 2 públicas e elas estão equitariamente distribuídas.
 em
-j) Em **Gateway NAT**, você pode escolher **nehum**, **Em 1 AZ** e **1 por AZ**. Esse item é cobrado já de cara. Então, vamos adotar o **Em 1 AZ**.
+j) Em **Gateway NAT**, você pode escolher **nenhum**, **Em 1 AZ** e **1 por AZ**. Esse item é cobrado já de cara. Então, vamos adotar o **Em 1 AZ**.
 
 k) Em **Endpoints da VPC**, você pode escolher o **Gateway S3** para reduzir a cobrança sobre o NAT.
 
@@ -494,3 +494,8 @@ Para testar o CloudFront, teria que ter um cliente fora da região que você ins
 
 # Passo-05: Criação do Bastion Host
 
+O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.
+
+# Passo-06: Criação de sub-rede privada e pública
+
+a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar 
