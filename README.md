@@ -29,16 +29,59 @@ O assistente também criará um gateway NAT (Network Address Translation ou Conv
 
 É um **serviço** com 3 importantes funções:
 
-## 1. Registra nomes de domínio
+### 1. Registra nomes de domínio
 Seu site precisa de um nome, como example.com. O Route 53 permite que você registre um nome para seu site ou aplicação Web, conhecido como um nome de domínio.
 
-## 2. Roteia tráfego de Internet para os recursos do seu domínio
+### 2. Roteia tráfego de Internet para os recursos do seu domínio
 Quando um usuário abre um navegador da Web e informa seu nome de domínio (example.com) ou nome de subdomínio (acme.example.com) na barra de endereços, o Route 53 ajuda a conectar o navegador com o site ou a aplicação Web.
 
-## 3. Verifica a integridade de seus recursos
+### 3. Verifica a integridade de seus recursos
 O Route 53 envia solicitações automáticas através da Internet a um recurso, como um servidor Web, para verificar se está acessível, disponível e funcional. Você também pode optar por receber notificações quando um recurso se tornar indisponível e optar por desviar o tráfego da Internet dos recursos não íntegros.
 
 # Por que criar uma instância S3?
+
+A Amazon Simple Storage Service (S3) é um serviço de armazenamento em nuvem oferecido pela AWS que fornece várias vantagens para empresas e desenvolvedores que desejam armazenar e gerenciar dados de forma eficiente e escalável. Nessa prática hoje, vamos armazenar um site estático chamado **index.html** e criar outros objetos, como pasta, subpastas e armazenar um arquivo qualquer. Mas além disso, o S3 oferece:
+
+### 1. Escalabilidade e Disponibilidade: 
+
+O Amazon S3 é altamente escalável e foi projetado para lidar com cargas de trabalho de qualquer tamanho. Ele fornece alta disponibilidade e durabilidade dos dados, replicando automaticamente os objetos em várias zonas de disponibilidade.
+
+### 2. Durabilidade: 
+
+O S3 oferece uma durabilidade excepcional dos dados, com múltiplas cópias dos objetos armazenados em diferentes dispositivos e locais físicos. Isso ajuda a proteger seus dados contra falhas de hardware e erros.
+
+### 3. Segurança: 
+
+O S3 oferece diversas opções de segurança, como controle de acesso baseado em políticas (IAM e políticas de bucket), criptografia de dados em repouso (por meio de chaves de servidor ou gerenciadas pelo cliente) e opções de proteção de dados em trânsito.
+
+### 4. Economia de Custos: 
+
+O S3 oferece diferentes classes de armazenamento, como "Standard", "Infrequent Access" e "Glacier", permitindo que você escolha a opção mais adequada para o seu caso de uso, o que pode resultar em economia de custos significativa.
+
+### 5. Recursos de Gerenciamento: 
+
+O S3 oferece recursos robustos de gerenciamento, como versionamento de objetos, logs de acesso, eventos de notificação (através do Amazon S3 Event Notifications), políticas de ciclo de vida para automatizar a transição de objetos entre classes de armazenamento e até mesmo a expiração automática de objetos.
+
+### 6. Integração com Outros Serviços: 
+
+O S3 é amplamente integrado com outros serviços da AWS, o que permite criar soluções complexas e altamente eficientes. Por exemplo, você pode usar o Amazon S3 como origem de dados para serviços de análise, como o Amazon Redshift ou o Amazon Athena.
+
+### 7. Desempenho: 
+
+O Amazon S3 é otimizado para oferecer um bom desempenho de leitura e gravação, mesmo em grandes volumes de dados.
+
+### 8. Acesso Global: 
+
+Os dados armazenados no S3 podem ser acessados de qualquer lugar do mundo por meio de URLs únicos e seguros, o que é útil para distribuição de conteúdo estático, como imagens e vídeos.
+
+### 9. Backup e Recuperação de Desastres: 
+
+O S3 pode ser usado para criar backups de dados importantes e atuar como uma solução de recuperação de desastres, garantindo a disponibilidade e a integridade dos dados mesmo em situações adversas.
+
+### 10. Fácil Integração: 
+
+A AWS oferece uma ampla gama de SDKs e ferramentas para facilitar a integração do S3 em aplicativos e sistemas existentes.
+
 
 # Por que criar um Amazon Load Balance?
 
