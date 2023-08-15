@@ -499,4 +499,12 @@ f) Agora vamos criar uma tabela de rotas na Subrede pública. Então, no menu ve
 
 f.1) Em **Nome-opcional** digite **TabRotaPubArqCorp** e em VPC, escolha a **VPCArquiteturaCorp** e confirma.
 
-g) Agora vamos criar uma saída para Internet para essa subrede pública poder ser visível. Então, no menu vertical esquerdo, clique em **Gateways da Internet** e em **Tag name** digite **IGWArqCorp** e confirme no botão laranja.
+g) Agora vamos criar uma saída para Internet para essa subrede pública poder ser visível. Então, no menu vertical esquerdo, clique em **Gateways da Internet** e em **Tag name** digite **IGWArqCorp** e confirme no botão laranja. Cuidado agora! Você precisa associar o seu IGW à VPCArquiteturaCorp. Então clique no botão verde igual ao da imagem abaixo.
+
+<picture>
+   <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png">
+   <img alt="Gerador de Política" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png)">
+</picture>
+
+
+
