@@ -7,7 +7,7 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
    <img alt="Arquitetura Inicial" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/arquitetura_avan%C3%A7ada.png)">
 </picture>
 
-Nessa arquitetura, o S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, não precisaremos do EC2. Contudo, o S3 na arquitetura corporativa se posiciona mais como um serviço de armazenamento de dados.
+Nessa arquitetura, o S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, não precisaremos do EC2. Contudo, o S3 na arquitetura corporativa se posiciona mais como um serviço de armazenamento de dados enquanto o EC2 se posiciona como servidor.
 
 # Por que criar uma VPC?
 
