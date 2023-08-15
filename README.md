@@ -12,8 +12,8 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
 
 * CloudFront serve para deixar sua aplicação em *cache* ao redor do mundo.
 
-* O S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, não precisaremos do EC2. Contudo, o S3 na arquitetura corporativa se posiciona mais como um serviço de armazenamento de dados enquanto o EC2 se posiciona como servidor.
-  
+* O S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, e no EC2, teremos a parte dinâmica do site (caso exista). Contudo, o S3 na arquitetura corporativa se posiciona tanto um serviço de armazenamento de dados quanto um site estático, porém, não adote o mesmo S3 para ambas finalidades. Adote mais de um S3.
+   
 * O ALB é um distribuidor de cargas e acessos.
   
 * O Bastion Host atua como um único ponto de acesso público para administrar a sua rede privada com os EC2s. Você acessa o Bastion host e depois você abre uma conexão SSH com o respectivo EC2 dentro da AWS. Portanto, o Bastion Host se posiciona na subrede pública para ter acesso à subrede privada. 
@@ -420,7 +420,6 @@ Agora você pode atualizar o seu link do S3 que o seu site estático estará no 
 ## Agora você poderia entrar no serviço Route 53...
 
 para apontar o endereço http://arquiteturacorp.s3-website-us-east-1.amazonaws.com/ para o endereço pago **aulaarquitetura.com**. Note também que o site está como HTTP e não HTTPS. Para tornar o seu seu site seguraro com o protocolo HTTPS, precisa criar uma certificação...
-
 
 
 # Passo-03: Criando uma CloudFront
