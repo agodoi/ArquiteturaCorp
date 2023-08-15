@@ -478,13 +478,13 @@ h) Agora você precisa voltar na tabela de rotas **TabRotaPubArqCorp** para indi
 i) Agora, temos que associar sua subrede privada na **TabRotaPubArqCorp**. Vá em **Sub-redes** no menu vertical, clique na sua **MinhaSubRedePublica** daí vá na aba **Tabela de rotas**, clique em **Editar associação da tabela de rotas** e aponte para **TabRotaPubArqCorp** e clique no botão laranja para concluir.
 
 
-# Passo-05: Criação da subrede privada
+# Passo-05: Criação da subrede privada (próxima instrução)
+
+O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.a
+
+# Passo-06: Criação do Bastion Host (próxima instrução)
 
 O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.
 
-
-# Passo-05: Criação do Bastion Host
-
-O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.
-
+# Passo-07: Criação do ALB (próxima instrução)
 
