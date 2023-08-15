@@ -16,7 +16,7 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
   
 * O ALB é um distribuidor de cargas e acessos.
   
-* O Bastion Host atua como um único ponto de acesso e administração dos EC2s.
+* O Bastion Host atua como um único ponto de acesso público e de administração dos EC2s.
   
 * O RDS é o banco de dados.
 
@@ -487,7 +487,10 @@ As demais configurações, como em **Viewer** e **Viewer protocol policy**, voc�
 
 Em **Allowed HTTP methods**, você pode deixar o GET, HEAD, mas se fosse para executar um CRUD, terá que colocar a opção **GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE**.
 
-Se você tiver um certicado validado, puxe esse certificado na opção **Custom SSL certificate - optional**
+Se você tiver um certicado validado, puxe esse certificado na opção **Custom SSL certificate - optional**.
+
+Para testar o CloudFront, teria que ter um cliente fora da região que você instanciou o seu site (Leste dos EUA) para observar a baixa latência de acesso.
 
 
+# Passo-05: Criação do Bastion Host
 
