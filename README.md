@@ -7,11 +7,7 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
    <img alt="Arquitetura Inicial" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/arquitetura_avan%C3%A7ada.png)">
 </picture>
 
-
-Nos auto-estudos, o aluno terá visto:
-Amazon Route 53
-Cloud Front
-Redes VPC
+Nessa arquitetura, o S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, não precisaremos do EC2. Contudo, o S3 na arquitetura corporativa se posiciona mais como um serviço de armazenamento de dados.
 
 # Por que criar uma VPC?
 
