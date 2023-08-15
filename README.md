@@ -7,15 +7,21 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
    <img alt="Arquitetura Inicial" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/arquitetura_avan%C3%A7ada.png)">
 </picture>
 
-Nessa arquitetura, o S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, não precisaremos do EC2. Contudo, o S3 na arquitetura corporativa se posiciona mais como um serviço de armazenamento de dados enquanto o EC2 se posiciona como servidor.
 
-O Bastion Host atua como um único ponto de acesso e administração dos EC2s.
+* Route 53 é o conversor do link S3 ou EC2 interno AWS (com vários caracteres) para um DNS amigável que você compra na Internet.
 
-O RDS é o banco de dados.
+* CloudFront serve para deixar sua aplicação em cache ao redor do mundo.
 
-O LBA é um distribuidor de cargas e acessos.
+* O S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, não precisaremos do EC2. Contudo, o S3 na arquitetura corporativa se posiciona mais como um serviço de armazenamento de dados enquanto o EC2 se posiciona como servidor.
+  
+* O ALB é um distribuidor de cargas e acessos.
+  
+* O Bastion Host atua como um único ponto de acesso e administração dos EC2s.
+  
+* O RDS é o banco de dados.
 
-Route 53 é o conversor do link S3 ou EC2 interno AWS (com vários caracteres) para um DNS amigável que você compra na Internet.
+
+
 
 
 
