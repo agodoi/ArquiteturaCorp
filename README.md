@@ -319,40 +319,16 @@ f.2) Em **Tipo de hospedagem** deixe em **Hospedar um site estático**.
 f.3) Em **Documento de índice** coloque o nome do arquivo-fonte do seu site, que nesse caso, pode ser **index.html**. Você deve salvar esse código abaixo em arquivo texto tipo *html* e vai usar numa etapa futura, não agora. Então, apenas salve esse código num arquivo **index.html** aí no seu HD local.
 
 ```
-<!DOCTYPE html>
-<html lang="pt-br">
-	<head>
-		<meta charset="utf-8">
-		<title>Calculadora</title>		
-		<script src="calculadora.js"></script>
-	</head>
-	<body bgcolor="beige">
-		<h1>Calculadora 1.0</h1>
-		<input type="text" id="txtValor1">
-			<select id="operadores" onchange="ControleDeSelecao();">
-				<optgroup label="Basico">
-					<option value="+">	+(somar)</option>
-					<option value="-">	-(subtrair)</option>
-					<option value="*">	*(multiplicar)</option>
-					<option value="/">	/(dividir)</option>
-				</optgroup>
-				<optgroup label="Outros">
-					<option value="raiz">	 	  Raiz	</option>
-					<option value="potencia">	Potência</option>
-					<option value="fatorial">	Fatorial</option>
-					<option value="fibonacci">Fibonaci</option>					
-					<option value="porcento">	Porcentagem</option>
-					<option value="media">		Média</option>
-					<option value="calc">		  Develop Calc</option>
-				</optgroup>
-			</select>
-		<input type="text" id="txtValor2" size="5"><br>		
-		<input type="button" onclick="Calcular('txtValor1', 'txtValor2')" value="Calcular">
-		<input type="button" onclick="Limpar('txtValor1', 'txtValor2')" value="Limpar">
-		<p id="saida">Resultado:</p>
-		<hr>		
-	</body>
+<!doctype html>
+<html>
+  <head>
+    <title>This is the title of the webpage!</title>
+  </head>
+  <body>
+    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+  </body>
 </html>
+
 ```
 
 f.4) No campo **Documento de erro - opcional** você pode deixar em branco ou elaborar uma página personalizada para quando der um erro em seu site ou até usar a mesma arquivo **index.html**. Para hoje, deixe esse campo em branco
@@ -485,6 +461,9 @@ Para testar o CloudFront, teria que ter um cliente fora da região que você ins
 
 O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.
 
+
+
+
 # Passo-06: Criação de sub-rede privada e pública
 
 a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPCArquiteturaCorp**.
@@ -503,8 +482,15 @@ g) Agora vamos criar uma saída para Internet para essa subrede pública poder s
 
 <picture>
    <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png">
-   <img alt="Gerador de Política" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png)">
+   <img alt="IGWAssociação" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png)">
 </picture>
+
+E daí você aponta para a VPC correta e confirma.
+
+h) Agora você precisa voltar na tabela de rotas **TabRotaPubArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRotaPubArqCorp**, e depois, clique em **Editar rotas**. Já existe uma rota padrão interna 10.0.0.0/16 mas isso não dá acesso externo à sua VPC. Clique em **Adicionar rota** e coloca em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGWArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
+
+i) Agora, temos que associar sua subrede privada na **TabRotaPubArqCorp**. Vá em **Sub-redes** no menu vertical, clique na sua **MinhaSubRedePublica** daí vá na aba **Tabela de rotas**, clique em **Editar associação da tabela de rotas** e aponte para **TabRotaPubArqCorp** e clique no botão laranja para concluir.
+
 
 
 
