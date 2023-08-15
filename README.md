@@ -130,7 +130,69 @@ Os balanceadores de carga podem ajudar a proteger sua infraestrutura, pois atuam
 
 # Por que criar um Bastion Host?
 
+É um servidor designado para fornecer acesso seguro a outras instâncias dentro de uma rede privada. Ele atua como um ponto de entrada controlado e seguro para administradores e desenvolvedores acessarem as instâncias em uma VPC ou ambiente de nuvem privada. Vantagens:
+
+### 1. Acesso Seguro: 
+
+O bastion host fornece um ponto de entrada seguro para acessar instâncias em uma rede privada. Isso é importante para proteger suas instâncias de possíveis ataques ou acessos não autorizados, já que o acesso direto a instâncias em uma rede privada é restrito.
+
+### 2. Controle de Acesso: 
+
+O bastion host permite implementar um controle rigoroso sobre quem pode acessar as instâncias em sua rede privada. Você pode configurar as políticas de autenticação e autorização para garantir que apenas usuários autorizados tenham acesso ao bastion host e, consequentemente, às instâncias internas.
+
+### 3. Redução de Superfície de Ataque: 
+
+Ao usar um bastion host, você reduz a exposição das instâncias internas à Internet. Isso limita os pontos de entrada potenciais para sua rede e minimiza os riscos associados a vulnerabilidades de segurança.
+
+### 4. Monitoramento Centralizado: 
+
+O bastion host pode ser configurado para registrar todas as atividades de acesso e uso. Isso facilita o monitoramento e a auditoria de quem está acessando suas instâncias e quais ações estão sendo realizadas.
+
+### 5. Acesso a Recursos Internos: 
+
+O bastion host pode ser configurado para redirecionar o tráfego para as instâncias internas na rede privada, permitindo a administração, manutenção e depuração de sistemas sem expor diretamente essas instâncias à Internet.
+
+### 6. Implementação de Políticas de Segurança: 
+
+O bastion host pode ser configurado com políticas de segurança específicas, como a exigência de autenticação de dois fatores (2FA), certificados SSH ou outras medidas de segurança personalizadas.
+
+### 7. Isolamento de Chaves Privadas: 
+
+A utilização do bastion host pode ajudar a proteger as chaves privadas usadas para autenticação nas instâncias, uma vez que os administradores e desenvolvedores não precisam manter essas chaves em suas máquinas locais.
+
+### 8. Gerenciamento Centralizado: 
+
+Um bastion host pode ser configurado para centralizar a administração e as ferramentas de gerenciamento. Isso pode facilitar as tarefas de manutenção, atualização e implementação de patches em várias instâncias internas.
+
+### 9. Acessibilidade a Instâncias Privadas: 
+
+O bastion host permite que você acesse instâncias internas sem expor diretamente seus endereços IP privados à Internet, o que pode ser útil para cenários em que a visibilidade da rede é limitada.
+
 # Por que criar um EC2?
+
+Amazon Elastic Compute Cloud (EC2) é um serviço de computação em nuvem oferecido pela Amazon Web Services (AWS) que fornece capacidade de processamento escalável na nuvem. Há várias vantagens em usar o EC2 na AWS, tornando-o uma escolha popular para hospedar aplicativos e executar cargas de trabalho em nuvem. Algumas das principais vantagens incluem:
+
+1. **Escalabilidade Sob Demanda**: O EC2 permite escalar verticalmente (aumentar ou diminuir recursos em uma única instância) e horizontalmente (adicionar ou remover instâncias) de acordo com as demandas da sua aplicação. Isso proporciona flexibilidade para lidar com picos de tráfego e variações de carga de trabalho.
+
+2. **Configuração Personalizável**: O EC2 oferece uma variedade de tipos de instância com diferentes quantidades de CPU, memória, armazenamento e capacidades de rede. Isso permite escolher a configuração de hardware mais adequada para atender aos requisitos da sua aplicação.
+
+3. **Diversidade de SO e Software**: Você pode escolher entre uma variedade de sistemas operacionais (Windows, Linux, etc.) e instalar o software necessário em suas instâncias EC2. Isso permite executar uma ampla gama de aplicativos e serviços.
+
+4. **Pagamento por Uso**: O modelo de preços do EC2 é baseado no pagamento por uso. Você paga apenas pelas instâncias que provisiona e pelo tempo em que elas estão em execução. Isso permite reduzir custos operacionais, já que você não precisa investir em hardware dedicado.
+
+5. **Acesso Administrativo Completo**: Você tem controle total sobre suas instâncias EC2, o que permite personalizar a configuração, instalar software, realizar atualizações e configurar a segurança de acordo com suas necessidades.
+
+6. **Integração com Outros Serviços AWS**: O EC2 é facilmente integrado a outros serviços da AWS, como o Amazon RDS (banco de dados relacional), Amazon S3 (armazenamento em nuvem), Amazon VPC (rede virtual privada) e muitos outros. Isso permite construir soluções completas e integradas na nuvem.
+
+7. **Alta Disponibilidade e Redundância**: O EC2 permite criar instâncias em várias zonas de disponibilidade, proporcionando resiliência contra falhas de hardware ou problemas em data centers específicos.
+
+8. **Autoscaling**: O EC2 permite configurar políticas de escalonamento automático para adicionar ou remover instâncias com base nas métricas de desempenho. Isso ajuda a manter o desempenho da aplicação durante flutuações de carga.
+
+9. **Backup e Recuperação**: Você pode criar imagens (AMIs) das suas instâncias EC2, o que facilita a criação de backups e a replicação de ambientes para recuperação de desastres.
+
+10. **Desenvolvimento e Testes**: O EC2 é frequentemente usado para ambientes de desenvolvimento e testes, pois permite criar rapidamente ambientes sob medida e replicáveis para testar código e recursos sem afetar a infraestrutura de produção.
+
+Essas são apenas algumas das vantagens do uso do Amazon EC2 na AWS. A escolha de usá-lo dependerá das necessidades específicas da sua aplicação, do nível de controle que você deseja e dos requisitos de escalabilidade, desempenho e segurança.
 
 # Por que criar um RDS?
 
