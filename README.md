@@ -264,16 +264,26 @@ Ao usar o RDS em uma configuração de várias zonas de disponibilidade (Multi-A
 
 O RDS é compatível com muitas ferramentas e aplicativos que são usados com bancos de dados relacionais, facilitando a migração de aplicações existentes para a nuvem.
 
-# Fluxo:
-## Criar um domínio (exemplo, goDaddy ou [RegistroBr](https://registro.br/)
-## Registrar o domínio recém criado no Zonas de Hospedagem do Route 53 (custo de U$0,50/mês)
-## Regitrar os nomes dos servidores Route 53 no GoDaddy
-## Criar um certificado público https no Certificate Manage para o domínio goDaddy
-## Abrir um serviço S3 para um site estático
-## CloudFront
+# Sugestão de fluxo, porém pago e não obrigatório:
+
+1) Criar um domínio (exemplo, goDaddy ou [RegistroBr](https://registro.br/))
+
+2) Registrar o domínio recém criado no Zonas de Hospedagem do Route 53 (custo de U$0,50/mês). Para isso, cria-se um Route 53 (essa etapa não poderá ser executada no Leaner Lab). Cada domínio criado no AWS gera um custo real de U$0,50 e por isso, não está disponível no Leaner Lab. Já no domínio particular da AWS, sim é possível criar um Route 53, mas precisa ter um cartão de crédito cadastrado para pagar os 50 centavos de dolar. Usando o site [goDaddy](https://www.godaddy.com/) (que é um site criador de domínios pagos), o professor criou o domínio **aulaarquitetura.com** para testes e caso algum grupo queira usar, basta pedir.
+
+3) Criar um certificado https (essa etapa não poderá ser executada no Leaner Lab) para o domínio goDaddy.
+
+3.a) Digite **certificate manager** na lupa do console da AWS
+
+3.b) No menu vertical esquerdo, clique em **Solicitar certificado** e depois clique em **Solicitar um certificado público**
+
+3.c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02, que nesse exemplo foi **aulaarquitetura.com**
+
+4) Regitrar os nomes dos servidores Route 53 no GoDaddy
+
+5) Seguir os passos abaixo.
 
 
-# Passo-01:
+# Passo-01: Criando a VPC
 
 a) Busque por VPC no console da AWS;
 
@@ -288,16 +298,7 @@ e) Bloco CIDR IPV4 digite **10.0.0.0/16** --> agora pense! O que isso significa?
 g) As demais opções, você não precisa mexer e basta confirmar no botão laranja.
 
 
-
-# Passo-02: Criação do Route 53 (essa etapa não poderá ser executada no Leaner Lab)
-
-Cada domínio criado no AWS gera um custo real de U$0,50 e por isso, não está disponível no Leaner Lab. Já no domínio particular da AWS, sim é possível criar um Route 53, mas precisa ter um cartão de crédito cadastrado para pagar os 50 centavos de dolar.
-
-Embora seja pago, é importante você conhecer as etapas desse importante passo.
-
-Usando o site [goDaddy](https://www.godaddy.com/) (que é um site criador de domínios pagos), o professor criou o domínio **aulaarquitetura.com** para testes.
-
-# Passo-03: Criando um serviço S3
+# Passo-02: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
 
 a) Digite S3 na lupa do console.
@@ -420,16 +421,9 @@ Agora você pode atualizar o seu link do S3 que o seu site estático estará no 
 
 para apontar o endereço http://arquiteturacorp.s3-website-us-east-1.amazonaws.com/ para o endereço pago **aulaarquitetura.com**. Note também que o site está como HTTP e não HTTPS. Para tornar o seu seu site seguraro com o protocolo HTTPS, precisa criar uma certificação...
 
-# Passo-extra: Criar um certificado https (essa etapa não poderá ser executada no Leaner Lab)
-
-a) Digite **certificate manager** na lupa do console da AWS
-
-b) No menu vertical esquerdo, clique em **Solicitar certificado** e depois clique em **Solicitar um certificado público**
-
-c) No campo **Nome de domínio totalmente qualificado**, você vai colar o domínio que criaria na etapa Passo-02, que nesse exemplo foi **aulaarquitetura.com**
 
 
-# Passo-04: Criando uma CloudFront
+# Passo-03: Criando uma CloudFront
 ## Serve para manter dados do site em cache, aumentar velocidade e minimizar latências ao redor do mundo
 
 Sua principal função é melhorar a velocidade e a disponibilidade de entrega de conteúdo, como imagens, vídeos, scripts e outros arquivos, aos usuários finais em diferentes regiões do mundo.
@@ -457,14 +451,7 @@ Se você tiver um certicado validado, puxe esse certificado na opção **Custom 
 Para testar o CloudFront, teria que ter um cliente fora da região que você instanciou o seu site (Leste dos EUA) para observar a baixa latência de acesso.
 
 
-# Passo-05: Criação do Bastion Host
-
-O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.
-
-
-
-
-# Passo-06: Criação de sub-rede privada e pública
+# Passo-04: Criação de sub-rede pública
 
 a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPCArquiteturaCorp**.
 
@@ -492,5 +479,13 @@ h) Agora você precisa voltar na tabela de rotas **TabRotaPubArqCorp** para indi
 i) Agora, temos que associar sua subrede privada na **TabRotaPubArqCorp**. Vá em **Sub-redes** no menu vertical, clique na sua **MinhaSubRedePublica** daí vá na aba **Tabela de rotas**, clique em **Editar associação da tabela de rotas** e aponte para **TabRotaPubArqCorp** e clique no botão laranja para concluir.
 
 
+# Passo-05: Criação da subrede privada
+
+O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.
+
+
+# Passo-05: Criação do Bastion Host
+
+O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.
 
 
