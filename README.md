@@ -279,25 +279,14 @@ a) Busque por VPC no console da AWS;
 
 b) Clique no botão laranja CRIAR;
 
-c) Selecione **VPC e muito mais**.
+c) Selecione **Somente VPC**.
 
-d) No campo **Gerar Automaticamente** digite **ArquiteturaCorp** e pule algumas configurações.
+d) No campo **Tag de nome** digite **VPCArquiteturaCorp**.
 
-e) Bloco CIDR IPV4 deixa o 10.0.0.0/16 --> agora pense! O que isso significa? Já vimos sobre isso...
+e) Bloco CIDR IPV4 digite **10.0.0.0/16** --> agora pense! O que isso significa? Já vimos sobre isso...
 
-f) Na opção Bloco CIDR IPv6, deixe como **Nenhum bloco IPV6** que significa que não vamos criar subrede usando IPV6
+g) As demais opções, você não precisa mexer e basta confirmar no botão laranja.
 
-g) Em locação, deixe **padrão**
-
-h) Em **Número de zonas de disponibilizadas (AZs)** deixe em **2** e clicando em **Personalizar AZs**, note que as duas zonas disponíveis para você: **us-east-1a** e **us-east-1b**.
-
-i) Em **Número de sub-redes públicas** e **sub-redes privadas**, deixe **2** em cada. Note que à direita, você tem 4 sub-redes, sendo 2 privadas e 2 públicas e elas estão equitariamente distribuídas.
-em
-j) Em **Gateway NAT**, você pode escolher **nenhum**, **Em 1 AZ** e **1 por AZ**. Esse item é cobrado já de cara. Então, vamos adotar o **Em 1 AZ**.
-
-k) Em **Endpoints da VPC**, você pode escolher o **Gateway S3** para reduzir a cobrança sobre o NAT.
-
-l) Você verá um fluxo de trabalho VPC que é na verdade um checklist com vários itens sendo criado.
 
 
 # Passo-02: Criação do Route 53 (essa etapa não poderá ser executada no Leaner Lab)
@@ -315,7 +304,7 @@ a) Digite S3 na lupa do console.
 
 b) Clique em **Criar bucket** (botão laranja).
 
-c) No campo **Nome do bucket** digite **arquiteturacorp**. Mas atenção: não pode ter letras maiúsculas e nem começar o nome com número.
+c) No campo **Nome do bucket** digite **S3ArquiteturaCorp**. Mas atenção: não pode ter letras maiúsculas e nem começar o nome com número.
 
 d) Em região, aponte para o **us-east-1**.
 
@@ -498,4 +487,10 @@ O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo
 
 # Passo-06: Criação de sub-rede privada e pública
 
-a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar 
+a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPCArquiteturaCorp**.
+
+b) No campo **Nome da sub-rede** coloque **MinhaSubRedePublica.
+
+c) Em **Zona de disponibilidade** deixe **sem preferência**.
+
+e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 10.0.1.0/24**
