@@ -371,13 +371,15 @@ a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **
 ### Pronto! Suas sub-redes públicas e privadas estão ok agora!
 
 
-# Passo-07: Criado EC2
+# Passo-07: Criado EC2 (refazer)
 
 Nesse passo você já deve estar ficando bom! Vamos criar 2 instâncias EC2, sendo uma na sub-rede pública e outra na sub-rede privada. O EC2 da sub-rede pública vai se comportar como Bastion Host e o EC2 da sub-rede privada, será seu servidor dinâmico, por exemplo.
 
-a) Buscando por EC2 na lupa do console, crie uma instância, nomeie-a como **EC2_Privado_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Privado_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Copr**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **desabilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Privado** habilite as opções o SSH e adicione **HTTP** e **0.0.0.0/0** e **HTTPS** e **0.0.0.0/0** e confirme no botão laranja.
+a) Buscando por EC2 na lupa do console, crie uma instância, nomeie-a como **EC2_Publica_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Publico_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **habilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Publico** habilite apenas a opção do SSH e confirme no botão laranja.
 
-# Passo-06: Criando um serviço S3
+b) Faça o mesm para o EC2 privado criando uma nova instância, nomeie-a como **EC2_Privado_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Privado_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **desabilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Privado** habilite as opções o SSH e adicione **HTTP** e **0.0.0.0/0** e **HTTPS** e **0.0.0.0/0** e confirme no botão laranja.
+
+# Passo-08: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
 
 a) Digite S3 na lupa do console.
@@ -494,7 +496,7 @@ Para fazer um teste, acesse o link do seu S3 e verá que o erro terá mudado ago
 </picture>
 
 
-K) Agora, basta você colocar um arquivo index.html dentro do seu S3 como se fosse um objeto. Arraste o seu index.html para dentro e salva. Veja a imagem de como fica no final:
+k) Agora, basta você colocar um arquivo index.html dentro do seu S3 como se fosse um objeto. Arraste o seu index.html para dentro e salva. Veja a imagem de como fica no final:
 
 
 <picture>
@@ -503,12 +505,6 @@ K) Agora, basta você colocar um arquivo index.html dentro do seu S3 como se fos
 </picture>
 
 Agora você pode atualizar o seu link do S3 que o seu site estático estará no ar.
-
-
-## Agora você poderia entrar no serviço Route 53...
-
-para apontar o endereço http://arquiteturacorp.s3-website-us-east-1.amazonaws.com/ para o endereço pago **aulaarquitetura.com**. Note também que o site está como HTTP e não HTTPS. Para tornar o seu seu site seguraro com o protocolo HTTPS, precisa criar uma certificação...
-
 
 # Passo-03: Criando uma CloudFront
 ## Serve para manter dados do site em cache, aumentar velocidade e minimizar latências ao redor do mundo
