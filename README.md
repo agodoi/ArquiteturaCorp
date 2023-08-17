@@ -305,6 +305,39 @@ e) Bloco CIDR IPV4 digite **192.168.0.0/22** --> agora pense! O que isso signifi
 
 g) As demais opções, você não precisa mexer e basta confirmar no botão laranja.
 
+# Passo-02: Criando as Subredes
+## Criação de subrede pública
+
+a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
+
+b) No campo **Nome da sub-rede** coloque **Sub_Publica_a**.
+
+c) Em **Zona de disponibilidade** deixe **us-east-1a**.
+
+e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 192.168.0.0/24**. Essa faixa está dentro da faixa maior 192.168.0.0/22. Vamos discutir o mapa de endereçamento numa instrução futura. Aguente firme!
+
+f) Agora vamos criar uma tabela de rotas na Subrede pública para que ela possa sair para a Internet. Para isso, precisamos de um **IGW (Internet Gateway)**, certo? Então, no menu vertical da VPC, procure por **Tabela de rotas** e clique em **Criar**.
+
+f.1) Em **Nome-opcional** digite **TabRota_Publica_ArqCorp** e em VPC, escolha a **VPC_Arquitetura_Corp** e confirma.
+
+g) Agora vamos criar uma saída para Internet para essa subrede pública poder ser visível. Então, no menu vertical esquerdo, clique em **Gateways da Internet** e em **Tag name** digite **IGW_ArqCorp** e confirme no botão laranja. Cuidado agora! Você precisa associar o seu IGW à VPCArquiteturaCorp. Então clique no botão verde igual ao da imagem abaixo.
+
+<picture>
+   <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png">
+   <img alt="IGWAssociação" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png)">
+</picture>
+
+E daí você aponta para a VPC correta e confirma.
+
+h) Agora você precisa voltar na tabela de rotas **TabRotaPubArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRotaPubArqCorp**, e depois, clique em **Editar rotas**. Já existe uma rota padrão interna 10.0.0.0/16 mas isso não dá acesso externo à sua VPC. Clique em **Adicionar rota** e coloca em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGWArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
+
+i) Agora, temos que associar sua subrede privada na **TabRotaPubArqCorp**. Vá em **Sub-redes** no menu vertical, clique na sua **MinhaSubRedePublica** daí vá na aba **Tabela de rotas**, clique em **Editar associação da tabela de rotas** e aponte para **TabRotaPubArqCorp** e clique no botão laranja para concluir.
+
+
+## Passo-05: Criação da subrede privada (próxima instrução)
+
+O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.a
+
 
 # Passo-02: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
@@ -466,38 +499,6 @@ Se você tiver um certicado validado, puxe esse certificado na opção **Custom 
 
 Para testar o CloudFront, teria que ter um cliente fora da região que você instanciou o seu site (Leste dos EUA) para observar a baixa latência de acesso.
 
-
-# Passo-04: Criação de sub-rede pública
-
-a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPCArquiteturaCorp**.
-
-b) No campo **Nome da sub-rede** coloque **MinhaSubRedePublicaArqCorp**.
-
-c) Em **Zona de disponibilidade** deixe **sem preferência**.
-
-e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 10.0.1.0/24**
-
-f) Agora vamos criar uma tabela de rotas na Subrede pública. Então, no menu vertical da VPC, procure por **Tabela de rotas** e clique em **Criar**.
-
-f.1) Em **Nome-opcional** digite **TabRotaPubArqCorp** e em VPC, escolha a **VPCArquiteturaCorp** e confirma.
-
-g) Agora vamos criar uma saída para Internet para essa subrede pública poder ser visível. Então, no menu vertical esquerdo, clique em **Gateways da Internet** e em **Tag name** digite **IGWArqCorp** e confirme no botão laranja. Cuidado agora! Você precisa associar o seu IGW à VPCArquiteturaCorp. Então clique no botão verde igual ao da imagem abaixo.
-
-<picture>
-   <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png">
-   <img alt="IGWAssociação" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png)">
-</picture>
-
-E daí você aponta para a VPC correta e confirma.
-
-h) Agora você precisa voltar na tabela de rotas **TabRotaPubArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRotaPubArqCorp**, e depois, clique em **Editar rotas**. Já existe uma rota padrão interna 10.0.0.0/16 mas isso não dá acesso externo à sua VPC. Clique em **Adicionar rota** e coloca em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGWArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
-
-i) Agora, temos que associar sua subrede privada na **TabRotaPubArqCorp**. Vá em **Sub-redes** no menu vertical, clique na sua **MinhaSubRedePublica** daí vá na aba **Tabela de rotas**, clique em **Editar associação da tabela de rotas** e aponte para **TabRotaPubArqCorp** e clique no botão laranja para concluir.
-
-
-## Passo-05: Criação da subrede privada (próxima instrução)
-
-O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.a
 
 ## Passo-06: Criação do Bastion Host (próxima instrução)
 
