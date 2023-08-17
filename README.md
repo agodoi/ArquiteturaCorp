@@ -347,18 +347,22 @@ d.1) Clique no link azul da tabela de rotas privada **TabRota_Privada_ArqCorp**,
 
 d.2) Faça o mesmo para a tabela de rotas pública **TabRota_Publica_ArqCorp**, clicando em seu link azul, depois indo na aba **Associação de sub-rede**, clicando no botão **Editar associações de sub-rede** e selecione a sub-rede privada **Sub_Publica_a** e confirme no botão laranja.
 
-g) Agora vamos criar uma saída para Internet da sub-rede pública e assim ela ser visível. Então, no menu vertical esquerdo, clique em **Gateways da Internet** e em **Tag name** digite **IGW_ArqCorp** e confirme no botão laranja. Cuidado agora! Você precisa associar o seu IGW à VPCArquiteturaCorp. Então clique no botão verde igual ao da imagem abaixo.
 
-<picture>
-   <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png">
-   <img alt="IGWAssociação" src="[YOUR-DEFAULT-IMAGE](https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png)">
-</picture>
+Portanto, agora suas Tabelas de Rotas já possuem as devidas sub-redes.
 
-E daí você aponta para a VPC correta e confirma.
+# Passo-04: Criando o IGW
 
-h) Agora você precisa voltar na tabela de rotas **TabRotaPubArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRotaPubArqCorp**, e depois, clique em **Editar rotas**. Já existe uma rota padrão interna 10.0.0.0/16 mas isso não dá acesso externo à sua VPC. Clique em **Adicionar rota** e coloca em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGWArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
+Esse elemento de rede resolve como sua rede pública vai encontrar a Internet.
 
-i) Agora, temos que associar sua sub-rede privada na **TabRotaPubArqCorp**. Vá em **Sub-redes** no menu vertical, clique na sua **MinhaSubRedePublica** daí vá na aba **Tabela de rotas**, clique em **Editar associação da tabela de rotas** e aponte para **TabRotaPubArqCorp** e clique no botão laranja para concluir.
+a) Para criar uma saída para Internet da sub-rede pública, vá no menu vertical esquerdo da VPC, clique em **Gateways da Internet**, depois **Criar gateway da Internet** e em **Tag name** digite **IGW_ArqCorp** e confirme no botão laranja. Cuidado agora! Você precisa associar o seu IGW à VPC_Arquitetura_Corp. Então clique no botão verde que vai aparecer na barra superior ou volte no menu vertical esquerdo, liste o seu **Gateways da Internet**, vá no botão **Ações**, selecione **Associar à VPC** e escolha a VPC recém criada e confirma no botão laranja.
+
+Agora, vamos atualizar as rotas de entrada e saída ou regras de entrada e saída.
+
+b) Volte na tabela de rotas **TabRota_Publica_ArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRota_Publica_ArqCorp**, e depois, vá na aba **Rotas**. Já existe uma rota padrão interna 192.168.0.0/22 mas isso não dá acesso externo à sua VPC e sim, somente acesso interno. Clique em **Editar rota**, depois **Adicionar rota** e selecione em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGW_ArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
+
+Por enquanto, sua sub-rede privada ficará como está, e sem acesso à Internet, pois isso é uma boa prática.
+
+No futuro, você terá que editar o Security Group para permitir o EC2 ser acessível à essa sub-rede pública, que por sua vez, dará acesso à Internet ao EC2.
 
 
 ## Passo-05: Criação da sub-rede privada (próxima instrução)
