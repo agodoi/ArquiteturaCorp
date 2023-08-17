@@ -43,6 +43,8 @@ O que é um AZ? É um data center isolado ou separado física e geograficamente 
 
 Caso você queira ter mais de uma VPC, a regra básica é que o range de IPs entre elas não se sobreponham.
 
+Caso queira excluir sua VPC, primeiro exclua a respectiva Interface de Internet (IGW). Você deve buscar por **IGW**, fazer a desassociação e a sua exclusão, e depois, excluir e VPC desejada
+
 # Por que criar um AWS Route 53?
 
 É um **serviço** com 3 importantes funções:
@@ -297,9 +299,9 @@ b) Clique no botão laranja CRIAR;
 
 c) Selecione **Somente VPC**.
 
-d) No campo **Tag de nome** digite **VPCArquiteturaCorp**.
+d) No campo **Tag de nome** digite **VPC_Arquitetura_Corp**.
 
-e) Bloco CIDR IPV4 digite **10.0.0.0/16** --> agora pense! O que isso significa? Já vimos sobre isso...
+e) Bloco CIDR IPV4 digite **192.168.0.0/22** --> agora pense! O que isso significa? Já vimos sobre isso...
 
 g) As demais opções, você não precisa mexer e basta confirmar no botão laranja.
 
