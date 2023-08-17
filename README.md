@@ -37,7 +37,11 @@ Dentro da VPC, vamos criar um IGW (Internet Gateway), que permite a comunicaçã
 
 **O assistente também criará um gateway NAT (Network Address Translation ou Conversão de Endereços de Rede) que é usado para fornecer conectividade com a Internet para instâncias do EC2 nas sub-redes privadas, mas a Internet não consegue acessar a instância EC2.**
 
-Outro ponto importante é que a *VPC default* criada pelo AWS quando você instancia um EC2 pela primeira vez, possui 6 subredes e todas são públicas. Nenhuma é privada. Isso significa que todos os itens que você colocar nessa VPC default estará visível na Internet.
+Outro ponto importante é que a *VPC default* criada pelo AWS quando você instancia um EC2 pela primeira vez, possui até 6 subredes e todas são públicas. Nenhuma é privada. Isso significa que todos os itens que você colocar nessa VPC default estará visível na Internet. Por que 6 subnets? Porque temos o AZ-Multi em operação oferecendo alta disponibilidade na AWS e no caso do Norte da Virgínia, são criadas 6 zonas: a, b, c, d, e, f. Na região de São Paulo, são criadas 3 zonas: a, b, c.
+
+O que é um AZ? É um data center isolado ou separado física e geograficamente por X quilômetros, 100km por exemplo (esse dado é sigiloso, não sabemos). Caso falhe um data center, você terá disponibilidade em outro.
+
+Caso você queira ter mais de uma VPC, a regra básica é que o range de IPs entre elas não se sobreponham.
 
 # Por que criar um AWS Route 53?
 
