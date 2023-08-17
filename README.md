@@ -368,8 +368,14 @@ Agora vamos resolver o acesso à Internet da sub-rede privada.
 
 a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a sub-rede privada. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **ID de alocação do IP elástico** e daí você marca a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
 
+### Pronto! Suas sub-redes públicas e privadas estão ok agora!
 
-# Passo-02: Criando um serviço S3
+
+# Passo-07: Criado EC2 (que você já deve saber como fazer)
+
+
+
+# Passo-06: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
 
 a) Digite S3 na lupa do console.
