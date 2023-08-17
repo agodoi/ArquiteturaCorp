@@ -360,14 +360,13 @@ Agora, vamos atualizar as rotas de entrada e saída ou regras de entrada e saíd
 
 b) Volte na tabela de rotas **TabRota_Publica_ArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRota_Publica_ArqCorp**, e depois, vá na aba **Rotas**. Já existe uma rota padrão interna 192.168.0.0/22 mas isso não dá acesso externo à sua VPC e sim, somente acesso interno. Clique em **Editar rota**, depois **Adicionar rota** e selecione em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGW_ArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
 
-Por enquanto, sua sub-rede privada ficará como está, e sem acesso à Internet, pois isso é uma boa prática.
-
 No futuro, você terá que editar o Security Group para permitir o EC2 ser acessível à essa sub-rede pública, que por sua vez, dará acesso à Internet ao EC2.
 
 
-## Passo-05: Criação da sub-rede privada (próxima instrução)
+# Passo-05: Criando o NAT
+Agora vamos resolver o acesso à Internet da sub-rede privada.
 
-O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (sub-rede externa) e a saída será uma sub-rede interna, com destino ao EC2 da arquitetura corporativa.a
+a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a sub-rede privada. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **ID de alocação do IP elástico** e daí você marca a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
 
 
 # Passo-02: Criando um serviço S3
