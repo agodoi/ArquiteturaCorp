@@ -16,7 +16,7 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
    
 * O ALB é um distribuidor de cargas e acessos.
   
-* O Bastion Host atua como um único ponto de acesso público para administrar a sua rede privada com os EC2s. Você acessa o Bastion host e depois você abre uma conexão SSH com o respectivo EC2 dentro da AWS. Portanto, o Bastion Host se posiciona na subrede pública para ter acesso à subrede privada. 
+* O Bastion Host atua como um único ponto de acesso público para administrar a sua rede privada com os EC2s. Você acessa o Bastion host e depois você abre uma conexão SSH com o respectivo EC2 dentro da AWS. Portanto, o Bastion Host se posiciona na sub-rede pública para ter acesso à sub-rede privada. 
   
 * O RDS é o banco de dados.
 
@@ -37,7 +37,7 @@ Dentro da VPC, vamos criar um IGW (Internet Gateway), que permite a comunicaçã
 
 **O assistente também criará um gateway NAT (Network Address Translation ou Conversão de Endereços de Rede) que é usado para fornecer conectividade com a Internet para instâncias do EC2 nas sub-redes privadas, mas a Internet não consegue acessar a instância EC2.**
 
-Outro ponto importante é que a *VPC default* criada pelo AWS quando você instancia um EC2 pela primeira vez, possui até 6 subredes e todas são públicas. Nenhuma é privada. Isso significa que todos os itens que você colocar nessa VPC default estará visível na Internet. Por que 6 subnets? Porque temos o AZ-Multi em operação oferecendo alta disponibilidade na AWS e no caso do Norte da Virgínia, são criadas 6 zonas: a, b, c, d, e, f. Na região de São Paulo, são criadas 3 zonas: a, b, c.
+Outro ponto importante é que a *VPC default* criada pelo AWS quando você instancia um EC2 pela primeira vez, possui até 6 sub-redes e todas são públicas. Nenhuma é privada. Isso significa que todos os itens que você colocar nessa VPC default estará visível na Internet. Por que 6 subnets? Porque temos o AZ-Multi em operação oferecendo alta disponibilidade na AWS e no caso do Norte da Virgínia, são criadas 6 zonas: a, b, c, d, e, f. Na região de São Paulo, são criadas 3 zonas: a, b, c.
 
 O que é um AZ? É um data center isolado ou separado física e geograficamente por X quilômetros, 100km por exemplo (esse dado é sigiloso, não sabemos). Caso falhe um data center, você terá disponibilidade em outro.
 
@@ -305,10 +305,10 @@ e) Bloco CIDR IPV4 digite **192.168.0.0/22** --> agora pense! O que isso signifi
 
 g) As demais opções, você não precisa mexer e basta confirmar no botão laranja.
 
-# Passo-02: Criando as Subredes
-## Criação de subrede pública
+# Passo-02: Criando as sub-redes
+## sub-rede pública
 
-a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
+a) No menu vertical da VPC, clique em **sub-redes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
 
 b) No campo **Nome da sub-rede** coloque **Sub_Publica_a**.
 
@@ -316,24 +316,38 @@ c) Em **Zona de disponibilidade** deixe **us-east-1a**.
 
 e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 192.168.0.0/24**. Essa faixa está dentro da faixa maior 192.168.0.0/22. Vamos discutir o mapa de endereçamento numa instrução futura. Aguente firme!
 
-## Criação de subrede privada
+## sub-rede privada
 
-a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
+a) No menu vertical da VPC, clique em **sub-redes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
 
-b) No campo **Nome da sub-rede** coloque **Sub_Privada_b**. Note que você está apontado para uma zona diferente da sua subrede pública. É uma estratégia para 
+b) No campo **Nome da sub-rede** coloque **Sub_Privada_b**. Note que você está apontado para uma zona diferente da sua sub-rede pública. É uma estratégia para 
 [alta disponibilidade](https://github.com/agodoi/VocabularioAWS).
 
-c) Em **Zona de disponibilidade** deixe **us-east-1a**.
+c) Em **Zona de disponibilidade** deixe **us-east-1b**.
 
-e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 192.168.0.0/24**. Essa faixa está dentro da faixa maior 192.168.0.0/22. Vamos discutir o mapa de endereçamento numa instrução futura. Aguente firme!
+e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 192.168.1.0/24**. Essa faixa está dentro da faixa maior 192.168.0.0/22. Novamente, vamos discutir o mapa de endereçamento numa instrução futura.
 
+# Passo-03: Criando Tabelas de Rotas
 
+A sua sub-rede pública ainda não sabe como chegar na Internet. Para isso, precisamos de um **IGW (Internet Gateway)**, certo? E nem a privada sabe chegar na Internet. Para isso precisamos de quem? Se você pensou em **NAT**, acertou!. IGW resolve a Internet para a pública e a NAT resolve para Internet para a privada.
 
-f) Agora vamos criar uma tabela de rotas na Subrede pública para que ela possa sair para a Internet. Para isso, precisamos de um **IGW (Internet Gateway)**, certo? Então, no menu vertical da VPC, procure por **Tabela de rotas** e clique em **Criar**.
+a) No menu vertical da VPC, procure por **Tabela de rotas**. Daí você vai observar que já existe uma Tabela de Rotas sem nome. Essa tabela sem nome é da sua VPC recém criada. Isso é normal, pois todas as vezes que você cria uma VPC nova, já carrega uma Tabela de Rotas **default** e sem nome. Só para organizar melhor, passe o mouse na coluna **Name** dessa Tabela de Rotas sem nome, veja um lápis e daí você digita **TabRota_Default_VPC_ArqCorp**.
 
-f.1) Em **Nome-opcional** digite **TabRota_Publica_ArqCorp** e em VPC, escolha a **VPC_Arquitetura_Corp** e confirma.
+E agora, vamos criar duas novas Tabelas de Rotas, sendo uma para a subnet pública e outra para a subnet privada. Chique?
 
-g) Agora vamos criar uma saída para Internet para essa subrede pública poder ser visível. Então, no menu vertical esquerdo, clique em **Gateways da Internet** e em **Tag name** digite **IGW_ArqCorp** e confirme no botão laranja. Cuidado agora! Você precisa associar o seu IGW à VPCArquiteturaCorp. Então clique no botão verde igual ao da imagem abaixo.
+b) Clique em **Criar tabela de rotas**, e em **nome** coloque **TabRota_Publica_ArqCorp** e selecione a VPC recém criada e confirme no botão laranja.
+
+c) Faça o mesmo para a sua subnet privada. Clique em **Criar tabela de rotas**, e em **nome** coloque **TabRota_Privada_ArqCorp** e selecione a VPC recém criada e confirme no botão laranja.
+
+Até agora, você só criou os nomes das Tabelas de Rotas que não sabem o que fazer ainda. Elas apenas estão dentro da sua VPC recém criada **VPC_Arquitetura_Corp**.
+
+d) Vamos agora associar as Tabelas de Rotas com as sub-redes propriamente ditas.
+
+d.1) Clique no link azul da tabela de rotas privada **TabRota_Privada_ArqCorp**, vá na aba **Associação de sub-rede**, clique no botão **Editar associações de sub-rede** e selecione a sub-rede privada **Sub_Privada_b** e confirme no botão laranja.
+
+d.2) Faça o mesmo para a tabela de rotas pública **TabRota_Publica_ArqCorp**, clicando em seu link azul, depois indo na aba **Associação de sub-rede**, clicando no botão **Editar associações de sub-rede** e selecione a sub-rede privada **Sub_Publica_a** e confirme no botão laranja.
+
+g) Agora vamos criar uma saída para Internet da sub-rede pública e assim ela ser visível. Então, no menu vertical esquerdo, clique em **Gateways da Internet** e em **Tag name** digite **IGW_ArqCorp** e confirme no botão laranja. Cuidado agora! Você precisa associar o seu IGW à VPCArquiteturaCorp. Então clique no botão verde igual ao da imagem abaixo.
 
 <picture>
    <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/IGWAssociacao.png">
@@ -344,12 +358,12 @@ E daí você aponta para a VPC correta e confirma.
 
 h) Agora você precisa voltar na tabela de rotas **TabRotaPubArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRotaPubArqCorp**, e depois, clique em **Editar rotas**. Já existe uma rota padrão interna 10.0.0.0/16 mas isso não dá acesso externo à sua VPC. Clique em **Adicionar rota** e coloca em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGWArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
 
-i) Agora, temos que associar sua subrede privada na **TabRotaPubArqCorp**. Vá em **Sub-redes** no menu vertical, clique na sua **MinhaSubRedePublica** daí vá na aba **Tabela de rotas**, clique em **Editar associação da tabela de rotas** e aponte para **TabRotaPubArqCorp** e clique no botão laranja para concluir.
+i) Agora, temos que associar sua sub-rede privada na **TabRotaPubArqCorp**. Vá em **Sub-redes** no menu vertical, clique na sua **MinhaSubRedePublica** daí vá na aba **Tabela de rotas**, clique em **Editar associação da tabela de rotas** e aponte para **TabRotaPubArqCorp** e clique no botão laranja para concluir.
 
 
-## Passo-05: Criação da subrede privada (próxima instrução)
+## Passo-05: Criação da sub-rede privada (próxima instrução)
 
-O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.a
+O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (sub-rede externa) e a saída será uma sub-rede interna, com destino ao EC2 da arquitetura corporativa.a
 
 
 # Passo-02: Criando um serviço S3
@@ -515,7 +529,7 @@ Para testar o CloudFront, teria que ter um cliente fora da região que você ins
 
 ## Passo-06: Criação do Bastion Host (próxima instrução)
 
-O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (subrede externa) e a saída será uma subrede interna, com destino ao EC2 da arquitetura corporativa.
+O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (sub-rede externa) e a saída será uma sub-rede interna, com destino ao EC2 da arquitetura corporativa.
 
 ## Passo-07: Criação do ALB (próxima instrução)
 
