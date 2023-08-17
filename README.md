@@ -384,6 +384,8 @@ a) Faça o mesm para o EC2 privado criando uma nova instância, nomeie-a como **
 # Passo-09: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
 
+Esse S3 serve para você adicionar seu site estático e não arquivos corporativos da sua empresa, ou logs de acesso, ou dados de clientes, pois esse S3 estará visível na Internet. Se você precisa de um S3 mais seguro, crie outro dentro da VPC.
+
 a) Digite S3 na lupa do console.
 
 b) Clique em **Criar bucket** (botão laranja).
