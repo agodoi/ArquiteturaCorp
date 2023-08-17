@@ -268,7 +268,7 @@ O RDS é compatível com muitas ferramentas e aplicativos que são usados com ba
 
 1) Criar um domínio (exemplo, goDaddy ou [RegistroBr](https://registro.br/))
 
-2) Registrar o domínio recém criado no Zonas de Hospedagem do Route 53 (custo de U$0,50/mês). Para isso, cria-se um Route 53 (essa etapa não poderá ser executada no Leaner Lab). Cada domínio criado no AWS gera um custo real de U$0,50/mês (valor de 2023) e por isso, não está disponível no Leaner Lab. Já no domínio particular da AWS, sim é possível criar um Route 53, mas precisa ter um cartão de crédito cadastrado e assumir o custo. Usando o site [goDaddy](https://www.godaddy.com/) (que é um site criador de domínios pagos), o professor criou o domínio **aulaarquitetura.com** para testes e caso algum grupo queira usar, basta pedir.
+2) Registrar o domínio recém criado no Zonas de Hospedagem do Route 53 (custo de U$0,50/mês). Para isso, cria-se um Route 53 (essa etapa não poderá ser executada no Leaner Lab). Cada domínio criado no AWS gera um custo real de U$0,50/mês (valor de 2023) e por isso, não está disponível no Leaner Lab. Já no domínio particular da AWS, sim é possível criar um Route 53, mas precisa ter um cartão de crédito cadastrado e assumir o custo. Usando o site [goDaddy](https://www.godaddy.com/) (que é um site criador de domínios pagos), o professor criou o domínio **aulaarquitetura.com** para testes. Mais detalhes sobre isso, fale com ele.
 
 3) Criar um certificado https (essa etapa não poderá ser executada no Leaner Lab) para o domínio goDaddy.
 
