@@ -316,6 +316,18 @@ c) Em **Zona de disponibilidade** deixe **us-east-1a**.
 
 e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 192.168.0.0/24**. Essa faixa está dentro da faixa maior 192.168.0.0/22. Vamos discutir o mapa de endereçamento numa instrução futura. Aguente firme!
 
+## Criação de subrede privada
+
+a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
+
+b) No campo **Nome da sub-rede** coloque **Sub_Privada_b**. Note que você está apontado para uma zona diferente da sua subrede pública. É uma estratégia para [**alta disponibilidade**](https://github.com/agodoi/VocabularioAWS).
+
+c) Em **Zona de disponibilidade** deixe **us-east-1a**.
+
+e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VPC que você criou, então, **digite 192.168.0.0/24**. Essa faixa está dentro da faixa maior 192.168.0.0/22. Vamos discutir o mapa de endereçamento numa instrução futura. Aguente firme!
+
+
+
 f) Agora vamos criar uma tabela de rotas na Subrede pública para que ela possa sair para a Internet. Para isso, precisamos de um **IGW (Internet Gateway)**, certo? Então, no menu vertical da VPC, procure por **Tabela de rotas** e clique em **Criar**.
 
 f.1) Em **Nome-opcional** digite **TabRota_Publica_ArqCorp** e em VPC, escolha a **VPC_Arquitetura_Corp** e confirma.
