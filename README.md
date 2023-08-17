@@ -37,6 +37,8 @@ Dentro da VPC, vamos criar um IGW (Internet Gateway), que permite a comunicaçã
 
 **O assistente também criará um gateway NAT (Network Address Translation ou Conversão de Endereços de Rede) que é usado para fornecer conectividade com a Internet para instâncias do EC2 nas sub-redes privadas, mas a Internet não consegue acessar a instância EC2.**
 
+Outro ponto importante é que a *VPC default* criada pelo AWS quando você instancia um EC2 pela primeira vez, possui 6 subredes e todas são públicas. Nenhuma é privada. Isso significa que todos os itens que você colocar nessa VPC default estará visível na Internet.
+
 # Por que criar um AWS Route 53?
 
 É um **serviço** com 3 importantes funções:
