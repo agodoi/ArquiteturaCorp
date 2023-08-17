@@ -320,7 +320,8 @@ e) Em **Bloco CIDR IPV4** coloque um IP que esteja dentro da faixa da rede da VP
 
 a) No menu vertical da VPC, clique em **subredes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
 
-b) No campo **Nome da sub-rede** coloque **Sub_Privada_b**. Note que você está apontado para uma zona diferente da sua subrede pública. É uma estratégia para [**alta disponibilidade**](https://github.com/agodoi/VocabularioAWS).
+b) No campo **Nome da sub-rede** coloque **Sub_Privada_b**. Note que você está apontado para uma zona diferente da sua subrede pública. É uma estratégia para 
+[alta disponibilidade](https://github.com/agodoi/VocabularioAWS).
 
 c) Em **Zona de disponibilidade** deixe **us-east-1a**.
 
