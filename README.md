@@ -29,7 +29,7 @@ A VPC é uma rede virtual definida por você dentro da infra da AWS que permite 
 
 ### 2. Disponibilidade:
 
-Uma VPC pode abranger várias zonas de disponibilidade.
+Uma VPC pode abranger várias zonas de disponibilidade. Cuidado! Cada VPC precisa estar numa zona diferente. As zonas são indicadas por letras a, b, c, d ... etc
 
 ### 3. Conectividade:
 
