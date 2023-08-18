@@ -360,7 +360,9 @@ Agora, vamos atualizar as rotas de entrada e saída ou regras de entrada e saíd
 
 b) Volte na tabela de rotas **TabRota_Publica_ArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRota_Publica_ArqCorp**, e depois, vá na aba **Rotas**. Já existe uma rota padrão interna 192.168.0.0/22 mas isso não dá acesso externo à sua VPC e sim, somente acesso interno. Clique em **Editar rota**, depois **Adicionar rota** e selecione em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGW_ArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
 
-No futuro, você terá que editar o Security Group para permitir o EC2 ser acessível à essa sub-rede pública, que por sua vez, dará acesso à Internet ao EC2.
+Portanto, tudo que for associado à sub-rede pública terá conexão com a Internet a partir de agora.
+
+Nos próxmos passos, você terá que associar um EC2 (que será público) à essa sub-rede pública. E assim, esse EC2 específico terá acesso à Internet ao EC2. Ele se chamará Bastion Host.
 
 
 # Passo-05: Criando o NAT
@@ -371,13 +373,15 @@ a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **
 ### Pronto! Suas sub-redes públicas e privadas estão ok agora!
 
 
-# Passo-07: Criado EC2 - Bastion Host
+# Passo-07: Criando EC2 - Bastion Host (público)
 
 Nesse passo você já deve estar ficando bom, pois já vimos EC2 em outra aula! Vamos criar 2 instâncias EC2, sendo uma na sub-rede pública e outra na sub-rede privada. O EC2 da sub-rede pública vai se comportar como **Bastion Host** e o EC2 da sub-rede privada, será seu servidor dinâmico, por exemplo.
 
 a) Buscando por EC2 na lupa do console, crie uma instância que será pública (**Bastion Host**), nomeie-a como **Bastion_Host_Publica_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Publico_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede pública recém criada, deixe **Atribuir IP público automaticamente** no **habilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Publico** habilite apenas a opção do SSH e confirme no botão laranja.
 
-## Passo-08: Criado outro EC2 - Servidor
+Mas atenção: esse IP público que você está recebendo agora nessa instância vai mudar se você desligar o EC2.
+
+## Passo-08: Criando outro EC2 - Servidor (privado)
 
 a) Faça o mesm para o EC2 privado criando uma nova instância, nomeie-a como **EC2_Privado_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Privado_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **desabilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Privado** habilite as opções o SSH e adicione **HTTP** e a origem, você aponte para **GS_EC2Publico** e **HTTPS** e **0.0.0.0/0** e confirme no botão laranja.
 
@@ -537,10 +541,6 @@ Se você tiver um certicado validado, puxe esse certificado na opção **Custom 
 
 Para testar o CloudFront, teria que ter um cliente fora da região que você instanciou o seu site (Leste dos EUA) para observar a baixa latência de acesso.
 
-
-## Passo-06: Criação do Bastion Host (próxima instrução)
-
-O Bastion Host é na verdade um EC2. Então, basta criar um EC2 e o devido grupo de segurança, onde a entrada desse EC2 será um acesso externo (sub-rede externa) e a saída será uma sub-rede interna, com destino ao EC2 da arquitetura corporativa.
 
 ## Passo-07: Criação do ALB (próxima instrução)
 
