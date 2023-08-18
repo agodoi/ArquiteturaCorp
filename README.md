@@ -401,6 +401,8 @@ e) Você deve estar dentro do EC2 interno usando o EC2 externo.
 
 f) Agora tente acessar o seu EC2 interno como se fosse o EC2 externo, isto é, execute o item (a) dessa passo mas usando o IP privado do botão **Conectar** do seu EC2 privado. Funcionou? Não! Por que? Seu EC2 interno possui IP público? Ele está com acesso ao IGW do EC2 externo? Não!
 
+Conclusões: seu EC2 público está protegendo o EC2 interno. Você pode ter quantos EC2 internos desejar. Basta armazenar as chaves internas dentro do EC2 público. Mas cuidado com os acessos do EC2 público. Ele está como regra de entrada o 0.0.0.0/0 e isso não é legal. O correto é você colocar o IP fixo externo da sua empresa. Assim, somente os DEVOPS vão acessar esse EC2 externo.
+
 # Passo-09: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
 
