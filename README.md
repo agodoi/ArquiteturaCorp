@@ -366,7 +366,7 @@ Nos próxmos passos, você terá que associar um EC2 (que será público) à ess
 
 
 # Passo-05: Criando o NAT [removi esse item da arquitetura]
-Agora vamos resolver o acesso à Internet da sub-rede privada.
+Agora vamos resolver o acesso à Internet da sub-rede privada, porém, acesso de saída. Não de entrada, por enquanto.
 
 a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a sub-rede privada. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **ID de alocação do IP elástico** e daí você marca a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
 
