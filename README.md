@@ -383,7 +383,23 @@ Mas atenção: esse IP público que você está recebendo agora nessa instância
 
 ## Passo-08: Criando outro EC2 - Servidor (privado)
 
-a) Faça o mesm para o EC2 privado criando uma nova instância, nomeie-a como **EC2_Privado_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Privado_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **desabilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Privado** habilite as opções o SSH e adicione **HTTP** e a origem, você aponte para **GS_EC2Publico** e **HTTPS** e **0.0.0.0/0** e confirme no botão laranja.
+a) Faça o mesm para o EC2 privado criando uma nova instância, nomeie-a como **EC2_Privado_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Privado_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **desabilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Privado** habilite as opções o **SSH** e adicione **HTTP** e a origem, você aponte para **GS_EC2Publico** e **HTTPS** e **0.0.0.0/0** e confirme no botão laranja.
+
+## Passo-08 (testes):
+
+Confira se seu EC2 privado (que é um servidor interno) está acessível a partir do Bastion Host. Para isso:
+
+a) Faça uma conexão **ssh -i** no seu Bastion Host usando o IP público (que você pega no botão **Conectar** das propriedade do EC2 externo chamado Bastion Host;
+
+b) Crie uma pasta raiz **mkdir** chamada **keys**. 
+
+c) Dentro dessa pasta, dê um **sudo nano PEM_EC2Privado_ArqCorp.pem** para criar o arquivo PEM, copie o texto da sua chave que deve estar na sua área do seu PC, cole no arquivo, dê um **Ctrl+S** e depois um **Ctrl+X** para salvar e sair.
+
+d) E dê outro **ssh -i** mas usando o endereço privado do EC2 privado. 
+
+e) Você deve estar dentro do EC2 interno usando o EC2 externo.
+
+f) Agora tente acessar o seu EC2 interno como se fosse o EC2 externo, isto é, execute o item (a) dessa passo mas usando o IP privado do botão **Conectar** do seu EC2 privado. Funcionou? Não! Por que? Seu EC2 interno possui IP público? Ele está com acesso ao IGW do EC2 externo? Não!
 
 # Passo-09: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
