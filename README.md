@@ -381,6 +381,26 @@ a) Buscando por EC2 na lupa do console, crie uma instância que será pública (
 
 Mas atenção: esse IP público que você está recebendo agora nessa instância vai mudar se você desligar o EC2.
 
+Outro ponto importante: para fazer sentido usar o Bastion Host, a imagem do sistema operacional dos demais EC2 internos (que você vai criar no próximo passo) deve ter o que chamamos de **Gold Image**:
+
+Uma "Gold Image" é uma boa prática no ambiente da AWS que se refere a uma imagem de máquina virtual (VM) pré-configurada que serve como uma base para a criação de novas instâncias. Essa imagem contém um sistema operacional e, muitas vezes, software pré-instalado, configurações otimizadas e possivelmente até mesmo dados ou configurações específicas da aplicação.
+
+A ideia por trás de uma **gold image** é criar uma imagem de referência padronizada que possa ser usada para provisionar rapidamente novas instâncias. Isso é especialmente útil quando você tem várias instâncias que precisam ter a mesma configuração básica, como ambientes de desenvolvimento, testes ou produção. Algumas vantagens de usar gold images na AWS incluem:
+
+* Consistência: Ao usar uma gold image, você garante que todas as instâncias criadas a partir dela tenham a mesma configuração, o que ajuda a evitar inconsistências e problemas de configuração.
+
+* Eficiência: A criação de novas instâncias a partir de uma gold image economiza tempo, pois você não precisa configurar manualmente cada instância.
+
+* Padronização: Uma gold image permite que você defina um padrão específico para suas instâncias, garantindo que todas sigam as mesmas diretrizes de configuração.
+
+* Rápido Provisionamento: Como a imagem já contém o sistema operacional e as configurações básicas, a criação de novas instâncias é mais rápida do que começar do zero.
+
+* Reprodutibilidade: Se você precisar escalar rapidamente ou substituir instâncias existentes, usar uma gold image facilita a recriação de ambientes consistentes.
+
+Para criar uma **gold image** na AWS, você geralmente inicia uma instância EC2, configura-a conforme suas necessidades (instalando software, configurando as opções do sistema operacional, etc.) e, em seguida, cria uma imagem personalizada a partir dessa instância. Essa imagem pode ser armazenada no Amazon Machine Image (AMI) e ser usada para lançar novas instâncias com base na configuração definida.
+
+Ter uma abordagem de **gold image** é especialmente benéfico em ambientes em nuvem, onde a escalabilidade e a automação são fundamentais. Isso ajuda a reduzir o esforço manual, melhorar a consistência do ambiente e agilizar a implantação de recursos.
+
 ## Passo-08: Criando outro EC2 - Servidor (privado)
 
 a) Faça o mesm para o EC2 privado criando uma nova instância, nomeie-a como **EC2_Privado_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Privado_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **desabilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Privado** habilite as opções o **SSH** e adicione **HTTP** e a origem, você aponte para **GS_EC2Publico** e **HTTPS** e **0.0.0.0/0** e confirme no botão laranja.
