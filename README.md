@@ -14,7 +14,7 @@ Nessa instrução, vamos explorar a arquitetura corporativa (apresentada na imag
 
 * O S3 vai se comportar como um servidor, mas será estático (HTML e JS), isto é, e no EC2, teremos a parte dinâmica do site (caso exista). Contudo, o S3 na arquitetura corporativa se posiciona tanto um serviço de armazenamento de dados quanto um site estático, porém, não adote o mesmo S3 para ambas finalidades. Adote mais de um S3.
    
-* O ALB é um distribuidor de cargas e acessos.
+* O ALB (Amazon Load Balance), ou ELB (Elastic Load Balance) é um distribuidor de cargas e acessos.
   
 * O Bastion Host atua como um único ponto de acesso público para administrar a sua rede privada com os EC2s. Você acessa o Bastion host e depois você abre uma conexão SSH com o respectivo EC2 dentro da AWS. Portanto, o Bastion Host se posiciona na sub-rede pública para ter acesso à sub-rede privada. 
   
@@ -588,23 +588,30 @@ Para testar o CloudFront, teria que ter um cliente fora da região que você ins
 
 ## Passo-07: Criação do ELB
 
-Todas as requisições externas da sua arquitetura vão entrar em um ELB para depois entrar em seus EC2.
+Todas as requisições externas da sua arquitetura vão entrar em um ELB para depois entrar em seus EC2. Dentro do ELB existe um algoritmo que monitora o tempo de resposta de cada EC2 para cada requisição e assim, o ELB distribui de forma equilibrada o número de requisições para cada EC2 seja ele, livre, com problemas, sobrecarregado, seja se sobrecarregando, etc.
 
-a) Busque por **Load balancers / EC2 feature** na lupa da AWS, e ao pesquiser por Load balancers, vai aparecer mais de uma opção, então pegue a opção cuja está como **EC2 feature**. Você terá 3 opções no seu console: 
+a) Busque por **EC2** na lupa da AWS, e no menu esquerdo vertical, procure por **Load balancers**. Você terá 3 opções no seu console: 
 
-1) **Application Load Balancer** >> quando precisar de um conjunto de recursos flexível para suas aplicações com tráfego HTTP e HTTPS
-2) **Network Load Balancer** >> quando precisar de desempenho altíssimo, descarga de TLS em escala, implantação de certificados centralizada, suporte para UDP e endereços IP estáticos para sua aplicação.
+1) **Application Load Balancer** >> quando precisar de um conjunto de recursos flexível para suas aplicações com tráfego HTTP e HTTPS, com API e entregas de conteúdos estáticos.
+2) **Network Load Balancer** >> quando precisar de desempenho altíssimo e de baixo nível, como sockets, descarga de TLS em escala, implantação de certificados centralizada, suporte para UDP e endereços IP estáticos para sua aplicação.
 3) **Gateway Load Balancer** >> quando precisar implantar e gerenciar uma frota de dispositivos virtuais de terceiros compatíveis com GENEVE. Esses dispositivos permitem que você melhore a segurança, a conformidade e os controles de políticas.
 
 Escolha a opção (1)
 
-b) Adicione um nome para o seu ELB, como **ELB-ArqCorp** [não permite certos caracteres aqui], deixe **Voltado para Internet**, **IPV4**, aponte para a sua **VPC_Arquitetura_Corp**.
+b) Adicione um nome para o seu ELB, como **ELB-ArqCorp** [não permite certos caracteres aqui], deixe **Voltado para Internet** (mas você pode criar um ELB interno, onde ele não terá acesso público e sim, somente, entre suas instâncias internas), 
 
-c) Em **Mapeamentos**, aponte para as duas zonas que aparecem e suas respectivas sub-redes Pública e Privada.
+c) em **Tipo de endereço IP** deixe como **IPV4**.
 
-d) En **Grupos de Segurança**, aponte para **GS_EC2Publico** e desmarque **default**.
+d) Em **Mapeamento de rede**, aponte para a sua **VPC_Arquitetura_Corp**.
 
-e) Em **Listener**, deixe o protocolo HTTP da forma que está, com porta 80.
+e) Em **Mapeamentos**, aponte todas as zonas que aparecem em sua VPC e suas respectivas sub-redes Pública e Privada. Isso vai permite que o **Auto Scalling** funcione depois. Dúvidas sobre o que é [Auto Scalling][https://github.com/agodoi/VocabularioAWS]?
+
+f) En **Grupos de Segurança**, aponte para **GS_EC2Publico** e desmarque **default**.
+
+g) Em **Listener**, deixe o protocolo HTTP da forma que está, com porta 80. Você só poderá adiconar o HTTPS se você tiver feito um certificado para o seu domínio dentro do Route 53 como mostra o início dessa instrução. E só lembrando, o Route 53 só funciona numa conta particular e não no Learner Lab.
+
+h) Agora você deve clicar em **Criar grupo de destino**, onde você fará o seguinte:
+
 
 f) Confirma no botão laranja a criação do ELB.
 
