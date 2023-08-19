@@ -586,7 +586,7 @@ Se você tiver um certicado validado, puxe esse certificado na opção **Custom 
 Para testar o CloudFront, teria que ter um cliente fora da região que você instanciou o seu site (Leste dos EUA) para observar a baixa latência de acesso.
 
 
-## Passo-07: Criação do ALB (próxima instrução)
+## Passo-07: Criação do ELB
 
 Todas as requisições externas da sua arquitetura vão entrar em um ELB para depois entrar em seus EC2.
 
@@ -596,3 +596,18 @@ a) Busque por **Load balancers / EC2 feature** na lupa da AWS, e ao pesquiser po
 2) **Network Load Balancer** >> quando precisar de desempenho altíssimo, descarga de TLS em escala, implantação de certificados centralizada, suporte para UDP e endereços IP estáticos para sua aplicação.
 3) **Gateway Load Balancer** >> quando precisar implantar e gerenciar uma frota de dispositivos virtuais de terceiros compatíveis com GENEVE. Esses dispositivos permitem que você melhore a segurança, a conformidade e os controles de políticas.
 
+Escolha a opção (1)
+
+b) Adicione um nome para o seu ELB, como **ELB-ArqCorp** [não permite certos caracteres aqui], deixe **Voltado para Internet**, **IPV4**, aponte para a sua **VPC_Arquitetura_Corp**.
+
+c) Em **Mapeamentos**, aponte para as duas zonas que aparecem e suas respectivas sub-redes Pública e Privada.
+
+d) En **Grupos de Segurança**, aponte para **GS_EC2Publico** e desmarque **default**.
+
+e) Em **Listener**, deixe o protocolo HTTP da forma que está, com porta 80.
+
+f) Confirma no botão laranja a criação do ELB.
+
+## Passo-08: Criando o RDS
+
+Para criar o RDS, vamos seguir os passos dessa aula já explorada: [EC2-RDS][https://github.com/agodoi/EC2-RDS]
