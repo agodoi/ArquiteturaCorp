@@ -610,4 +610,4 @@ f) Confirma no botão laranja a criação do ELB.
 
 ## Passo-08: Criando o RDS
 
-Para criar o RDS, vamos seguir os passos dessa aula já explorada: [EC2-RDS][https://github.com/agodoi/EC2-RDS]. Siga esses pacos que terá sucesso na criação do RDS.
+Para criar o RDS, vamos nos inspierar nos passos dessa aula que já foi explorada: [EC2-RDS][https://github.com/agodoi/EC2-RDS]. Siga esses pacos que terá sucesso na criação do RDS.
