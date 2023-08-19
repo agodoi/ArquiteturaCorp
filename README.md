@@ -588,3 +588,11 @@ Para testar o CloudFront, teria que ter um cliente fora da região que você ins
 
 ## Passo-07: Criação do ALB (próxima instrução)
 
+Todas as requisições externas da sua arquitetura vão entrar em um ELB para depois entrar em seus EC2.
+
+a) Busque por **Load balancers / EC2 feature** na lupa da AWS, e ao pesquiser por Load balancers, vai aparecer mais de uma opção, então pegue a opção cuja está como **EC2 feature**. Você terá 3 opções no seu console: 
+
+1) **Application Load Balancer** >> quando precisar de um conjunto de recursos flexível para suas aplicações com tráfego HTTP e HTTPS
+2) **Network Load Balancer** >> quando precisar de desempenho altíssimo, descarga de TLS em escala, implantação de certificados centralizada, suporte para UDP e endereços IP estáticos para sua aplicação.
+3) **Gateway Load Balancer** >> quando precisar implantar e gerenciar uma frota de dispositivos virtuais de terceiros compatíveis com GENEVE. Esses dispositivos permitem que você melhore a segurança, a conformidade e os controles de políticas.
+
