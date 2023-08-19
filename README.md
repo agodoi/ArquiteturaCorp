@@ -368,7 +368,11 @@ Nos próxmos passos, você terá que associar um EC2 (que será público) à ess
 # Passo-05: Criando o NAT [removi esse item da arquitetura]
 Agora vamos resolver o acesso à Internet da sub-rede privada, porém, acesso de saída. Não de entrada, por enquanto.
 
-a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a sub-rede privada. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **ID de alocação do IP elástico** e daí você marca a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
+a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a sub-rede **pública**. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **Alocar IP elástico**, então clique nesse botão e daí você ter a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
+
+b) Dessa forma, o NAT vai deixar os pacotes saírem da rede privada, mas não vai permitir acessos de fora para dentro. Mas ainda temos um detalhe para definir que é criar uma rota na sua **TabRota_Privada_ArqCorp**. Então, no meu vertical esquerdo da sua VPC, clique em **Tabela de rotas**, clique no link azul **TabRota_Privada_ArqCorp** e daí, **Editar rotas**, clique no botão **Adicionar rotas**, escolha o **Destino 0.0.0.0/0** (Internet externa) e coloque em **Alvo** como **Gateway NAT** (algo do tipo assim **igw-07f8fc3cd3bcc0dc8**). Esse item gasta-se alguns minutos para propagar e começar a funcionar.
+
+**Tente atualizar o Ubuntu do seu EC2 interno.**
 
 ### Pronto! Suas sub-redes públicas e privadas estão ok agora!
 
@@ -423,6 +427,8 @@ f) Agora tente acessar o seu EC2 interno como se fosse o EC2 externo, isto é, e
 
 Conclusões: seu EC2 público está protegendo o EC2 interno. Você pode ter quantos EC2 internos desejar. Basta armazenar as chaves internas dentro do EC2 público. Mas cuidado com os acessos do EC2 público. Ele está como regra de entrada o 0.0.0.0/0 e isso não é legal. O correto é você colocar o IP fixo externo da sua empresa. Assim, somente os DEVOPS vão acessar esse EC2 externo.
 
+g) Outro teste é o EC2 privado não consegue acessar a Internet para se atualizar. Então o NAT Gateway precisa enchegar esse caminho para fora. Da forma que está agora, não consiguiremos atualizar nada no EC2 privado. **O segredo é assonar o NAT Gateway à sub-rede pública**.
+
 # Passo-09: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
 
@@ -432,7 +438,7 @@ a) Digite S3 na lupa do console.
 
 b) Clique em **Criar bucket** (botão laranja).
 
-c) No campo **Nome do bucket** digite algor parecido com **S3ArquiteturaCorp** (porque os buckets possuem nome exclusivo). Mas atenção: não pode ter letras maiúsculas e nem começar o nome com número.
+c) No campo **Nome do bucket** digite algor parecido com **s3_arqcoporativa** (os nomes de buckets são exclusivos mundialmente porque possuem URL exclusivas, logo você terá que criar o seu nome exlusivo). Mas atenção: não pode ter letras maiúsculas e nem começar o nome com número.
 
 d) Em região, aponte para o **us-east-1**.
 
