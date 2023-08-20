@@ -630,7 +630,10 @@ h.8) Em **Configurações avançadas de verificação de integridade** não prec
 
 h.9) Você vai cair numa tela diferente chamada **Registrar destinos** Você deve marcar todas as instâncias que você deseja que o ELB vai distribui a carga. No nosso caso, vamos marcar **Bastion_Host_Publica_ArqCorp** e **EC2_Privado_ArqCorp** e clicar no botão laranja chamado **Criar grupo de destino**.
 
-h.10) Confirme se seu **Registrar destinos** deu certo, clicando em **Grupo de destino** no menu vertical esquerdo. Clique no apelido dado **GrupoDestino-ELB** e logo abaixo, em **Destinos registrado**, tem que aparecer as duas instâncias EC2 criadas: **Bastion_Host_Publica_ArqCorp** e **EC2_Privado_ArqCorp**. Se não aparecem, clique em **Registrar destinos** e marque as duas instâncias. Daí você pressiona um botão no meio da tela chamado **Incluir como pendente abaixo**, e depois, confirma no botão laranja. Aguarde alguns instantes para iniciar tais conexões entre ELB e instâncias EC2. Contudo, mesmo após aguardar alguns instantes, vai aparecer o status {c:red}unhealthy{/c} <span style="color:red">Esta palavra está em vermelho</span>
+h.10) Confirme se seu **Registrar destinos** deu certo, clicando em **Grupo de destino** no menu vertical esquerdo. Clique no apelido dado **GrupoDestino-ELB** e logo abaixo, em **Destinos registrado**, tem que aparecer as duas instâncias EC2 criadas: **Bastion_Host_Publica_ArqCorp** e **EC2_Privado_ArqCorp**. Se não aparecem, clique em **Registrar destinos** e marque as duas instâncias. Daí você pressiona um botão no meio da tela chamado **Incluir como pendente abaixo**, e depois, confirma no botão laranja. Aguarde alguns instantes para iniciar tais conexões entre ELB e instâncias EC2. Contudo, mesmo após aguardar alguns instantes, vai aparecer o status **unhealthy** em vermlho. Isso indica que o seu ELB ainda não conseguiu se conectar com suas instâncias por dois motivos:
+
+- 1) Suas instâncias EC2 estão vazias, não possuem nada;
+- 2) O grupo de segurança **GrupoDestino-ELB** está isolado, isto é, não está conectado uma API que poderia rodar no EC2 privado, por exemplo.
 
 
 ## Passo-08: Criando o RDS
