@@ -583,7 +583,7 @@ Em **Allowed HTTP methods**, você pode deixar o GET, HEAD, mas se fosse para ex
 
 Se você tiver um certicado validado, puxe esse certificado na opção **Custom SSL certificate - optional**.
 
-Para testar o CloudFront, teria que ter um cliente fora da região que você instanciou o seu site (Leste dos EUA) para observar a baixa latência de acesso.
+Para testar o CloudFront, teria que ter um cliente fora da região que você instanciou o seu site (Leste dos EUA) para observar a baixa latência de acesso. Você pode fazer isso criando uma VPN para se conectar em outro país para simular você fora do Brasil e naquele computador de outro país, você carrega seu site principal. Você deve notar uma resposta bem parecida com a resposta que você teve usando a sua rede local para acessar o seu site. Procure na Internet um tutorial de como fazer uma VPN para fora do Brasil.
 
 
 ## Passo-07: Criação do ELB
@@ -592,11 +592,11 @@ Todas as requisições externas da sua arquitetura vão entrar em um ELB para de
 
 a) Busque por **EC2** na lupa da AWS, e no menu esquerdo vertical, procure por **Load balancers**. Você terá 3 opções no seu console: 
 
-1) **Application Load Balancer** >> quando precisar de um conjunto de recursos flexível para suas aplicações com tráfego HTTP e HTTPS, com API e entregas de conteúdos estáticos.
-2) **Network Load Balancer** >> quando precisar de desempenho altíssimo e de baixo nível, como sockets, descarga de TLS em escala, implantação de certificados centralizada, suporte para UDP e endereços IP estáticos para sua aplicação.
-3) **Gateway Load Balancer** >> quando precisar implantar e gerenciar uma frota de dispositivos virtuais de terceiros compatíveis com GENEVE. Esses dispositivos permitem que você melhore a segurança, a conformidade e os controles de políticas.
+**1) Application Load Balancer** >> quando precisar de um conjunto de recursos flexível para suas aplicações com tráfego HTTP e HTTPS, com API e entregas de conteúdos estáticos.
+**2) Network Load Balancer** >> quando precisar de desempenho altíssimo e de baixo nível, como sockets, descarga de TLS em escala, implantação de certificados centralizada, suporte para UDP e endereços IP estáticos para sua aplicação.
+**3) Gateway Load Balancer** >> quando precisar implantar e gerenciar uma frota de dispositivos virtuais de terceiros compatíveis com GENEVE. Esses dispositivos permitem que você melhore a segurança, a conformidade e os controles de políticas.
 
-Escolha a opção (1)
+**Escolha a opção (1)**
 
 b) Adicione um nome para o seu ELB, como **ELB-ArqCorp** [não permite certos caracteres aqui], deixe **Voltado para Internet** (mas você pode criar um ELB interno, onde ele não terá acesso público e sim, somente, entre suas instâncias internas), 
 
@@ -604,7 +604,7 @@ c) em **Tipo de endereço IP** deixe como **IPV4**.
 
 d) Em **Mapeamento de rede**, aponte para a sua **VPC_Arquitetura_Corp**.
 
-e) Em **Mapeamentos**, aponte todas as zonas que aparecem em sua VPC e suas respectivas sub-redes Pública e Privada. Isso vai permite que o **Auto Scalling** funcione depois. Dúvidas sobre o que é [Auto Scalling][https://github.com/agodoi/VocabularioAWS]?
+e) Em **Mapeamentos**, **aponte todas as zonas que aparecem em sua VPC** e suas respectivas sub-redes Pública e Privada. Isso vai permite que o **Auto Scalling** funcione depois. Dúvidas sobre o que é [Auto Scalling][https://github.com/agodoi/VocabularioAWS]?
 
 f) En **Grupos de Segurança**, aponte para **GS_EC2Publico** e desmarque **default**.
 
@@ -612,9 +612,28 @@ g) Em **Listener**, deixe o protocolo HTTP da forma que está, com porta 80. Voc
 
 h) Agora você deve clicar em **Criar grupo de destino**, onde você fará o seguinte:
 
+h.1) Em **Escolha um tipo de destino** opte por **Instâncias**
+
+h.2) Em **Nome do grupo de destino**, você pode digitar **GrupoDestino-ELB** [não funciona com underline] ou outro nome que lhe fizer sentido.
+
+h.3) Em **Protocolo**, deixe o HTTP porta 80. Lembre-se que se você tiver um domínio já certificado, então pode colocar o HTTPS. E atenção: se você tiver usando outra porta em seu servidor, como porta 8000, esse é o local adequado para alterar a porta de 80 para 8000.
+
+h.4) Selecione a VPC que estamos tratando, que nesse caso é **VPC_ArquiteturaCorp**.
+
+h.5) Em **Versão do Protocolo**, deixe **HTTP1**.
+
+h.6) Em **Verificação de integridade**, deixe **HTTP**. Essa opção serve para o ELB bater na instância que você criou e verificar sua saúde. O ELB terá uma resposta 200 se fizer um pedido de verificação usando HTTP.
+
+h.7) Em **Caminho da verificação de integridade**, você define o path onde o ELB precisa bater. Nesse caso, deixe **/** como path raiz padrão, mas se você tiver usando uma API com HTTPS, você precisa apontar qual o path do local da sua aplicação para o ELB encontrar.
+
+h.8) Em **Configurações avançadas de verificação de integridade** não precisa mexer agora e clique no botão laranja.
+
+h.9) Você vai cair numa tela diferente chamada **Registrar destinos** Você deve marcar todas as instências que você deseja que o ELB vai distribui a carga. No nosso caso, vamos marcar **Bastion_Host_Publica_ArqCorp** e **EC2_Privado_ArqCorp** e clicar no botão laranja chamado **Criar grupo de destino**.
+
+h.10) O grupo de segurança criado em (h.2) está isolado, não está relacionado com ninguém. Então, você precisa entrar nos Grupos de Segurança da sua VPC que cuidam da sua sub-rede pública e privada, e amarrar esse novo grupo de segurança **GrupoDestino-ELB** com a sub-rede privada e a sub-rede pública. Então vá da dashboard da sua VPC, clique em Grupos de segurança, selecione a sub-rede pública e edite **Regras de entrada**, selecione **Todo tráfigo** ou caso tenha uma porta específica na sua API, escolhe **TCP personalizad** com a porta deseja, mas na lupa lateral, 
 
 f) Confirma no botão laranja a criação do ELB.
 
 ## Passo-08: Criando o RDS
 
-Para criar o RDS, vamos nos inspierar nos passos dessa aula que já foi explorada: [EC2-RDS][https://github.com/agodoi/EC2-RDS]. Siga esses pacos que terá sucesso na criação do RDS.
+Para criar o RDS, vamos revisitar os passos da aula que já foi explorada: [EC2-RDS][https://github.com/agodoi/EC2-RDS]. Siga esses passos que terá sucesso na criação do RDS.
