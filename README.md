@@ -634,7 +634,9 @@ h.10) Confirme se seu **Registrar destinos** deu certo, clicando em **Grupo de d
 
 - 1) Suas instâncias EC2 estão vazias, não possuem nada;
 - 2) O grupo de segurança **GrupoDestino-ELB** está isolado, isto é, não está conectado uma API que poderia rodar no EC2 privado, por exemplo.
+  3) Para resolver, vamos subir uma API no EC2 privado e finalizar essa conexão com o ELB mais tarde.
 
+Seu ELB está praticamente pronto, basta fazer a conexão de saúde com uma aplicação rodando em EC2. Veremos isso numa instrução futura.
 
 ## Passo-08: Criando o RDS
 
