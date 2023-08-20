@@ -632,9 +632,9 @@ h.9) Você vai cair numa tela diferente chamada **Registrar destinos** Você dev
 
 h.10) Confirme se seu **Registrar destinos** deu certo, clicando em **Grupo de destino** no menu vertical esquerdo. Clique no apelido dado **GrupoDestino-ELB** e logo abaixo, em **Destinos registrado**, tem que aparecer as duas instâncias EC2 criadas: **Bastion_Host_Publica_ArqCorp** e **EC2_Privado_ArqCorp**. Se não aparecem, clique em **Registrar destinos** e marque as duas instâncias. Daí você pressiona um botão no meio da tela chamado **Incluir como pendente abaixo**, e depois, confirma no botão laranja. Aguarde alguns instantes para iniciar tais conexões entre ELB e instâncias EC2. Contudo, mesmo após aguardar alguns instantes, vai aparecer o status **unhealthy** em vermlho. Isso indica que o seu ELB ainda não conseguiu se conectar com suas instâncias por dois motivos:
 
-- 1) Suas instâncias EC2 estão vazias, não possuem nada;
-- 2) O grupo de segurança **GrupoDestino-ELB** está isolado, isto é, não está conectado uma API que poderia rodar no EC2 privado, por exemplo.
-  3) Para resolver, vamos subir uma API no EC2 privado e finalizar essa conexão com o ELB mais tarde.
+   1) Suas instâncias EC2 estão vazias, não possuem nada;
+   2) O grupo de segurança **GrupoDestino-ELB** está isolado, isto é, não está conectado uma API que poderia rodar no EC2 privado, por exemplo.
+   3) Para resolver, vamos subir uma API no EC2 privado e finalizar essa conexão com o ELB mais tarde.
 
 Seu ELB está praticamente pronto, basta fazer a conexão de saúde com uma aplicação rodando em EC2. Veremos isso numa instrução futura. Caso já queira resolver essa etapa hoje ainda, abra esse [vídeo](https://www.youtube.com/watch?v=8vcrE0FojKY) na posição 15min e assita.
 
