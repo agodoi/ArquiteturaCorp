@@ -606,13 +606,13 @@ d) Em **Mapeamento de rede**, aponte para a sua **VPC_Arquitetura_Corp**.
 
 e) Em **Mapeamentos**, **aponte todas as zonas que aparecem em sua VPC** e suas respectivas sub-redes Pública e Privada. Isso vai permite que o **Auto Scalling** funcione depois. Dúvidas sobre o que é [Auto Scalling][https://github.com/agodoi/VocabularioAWS]?
 
-f) En **Grupos de Segurança**, aponte para **GS_EC2Publico** e desmarque **default**.
+f) En **Grupos de Segurança**, aponte para **GS_EC2Publico** e **GS_EC2Privado** e desmarque **default**.
 
 g) Em **Listener**, deixe o protocolo HTTP da forma que está, com porta 80. Você só poderá adiconar o HTTPS se você tiver feito um certificado para o seu domínio dentro do Route 53 como mostra o início dessa instrução. E só lembrando, o Route 53 só funciona numa conta particular e não no Learner Lab.
 
 h) Agora você deve clicar em **Criar grupo de destino**, onde você fará o seguinte:
 
-h.1) Em **Escolha um tipo de destino** opte por **Instâncias**
+h.1) Em **Escolha um tipo de destino** opte por **Instâncias**.
 
 h.2) Em **Nome do grupo de destino**, você pode digitar **GrupoDestino-ELB** [não funciona com underline] ou outro nome que lhe fizer sentido.
 
