@@ -636,7 +636,7 @@ h.10) Confirme se seu **Registrar destinos** deu certo, clicando em **Grupo de d
 - 2) O grupo de segurança **GrupoDestino-ELB** está isolado, isto é, não está conectado uma API que poderia rodar no EC2 privado, por exemplo.
   3) Para resolver, vamos subir uma API no EC2 privado e finalizar essa conexão com o ELB mais tarde.
 
-Seu ELB está praticamente pronto, basta fazer a conexão de saúde com uma aplicação rodando em EC2. Veremos isso numa instrução futura.
+Seu ELB está praticamente pronto, basta fazer a conexão de saúde com uma aplicação rodando em EC2. Veremos isso numa instrução futura. Caso já queira resolver essa etapa hoje ainda, abra esse [vídeo][https://www.youtube.com/watch?v=8vcrE0FojKY] na posição 15min e assita.
 
 ## Passo-08: Criando o RDS
 
