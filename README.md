@@ -628,11 +628,9 @@ h.7) Em **Caminho da verificação de integridade**, você define o path onde o 
 
 h.8) Em **Configurações avançadas de verificação de integridade** não precisa mexer agora e clique no botão laranja.
 
-h.9) Você vai cair numa tela diferente chamada **Registrar destinos** Você deve marcar todas as instências que você deseja que o ELB vai distribui a carga. No nosso caso, vamos marcar **Bastion_Host_Publica_ArqCorp** e **EC2_Privado_ArqCorp** e clicar no botão laranja chamado **Criar grupo de destino**.
+h.9) Você vai cair numa tela diferente chamada **Registrar destinos** Você deve marcar todas as instâncias que você deseja que o ELB vai distribui a carga. No nosso caso, vamos marcar **Bastion_Host_Publica_ArqCorp** e **EC2_Privado_ArqCorp** e clicar no botão laranja chamado **Criar grupo de destino**.
 
-h.10) O grupo de segurança criado em (h.2) está isolado, não está relacionado com ninguém. Então, você precisa entrar nos Grupos de Segurança da sua VPC que cuidam da sua sub-rede pública e privada, e amarrar esse novo grupo de segurança **GrupoDestino-ELB** com a sub-rede privada e a sub-rede pública. Então vá da dashboard da sua VPC, clique em Grupos de segurança, selecione a sub-rede pública e edite **Regras de entrada**, selecione **Todo tráfigo** ou caso tenha uma porta específica na sua API, escolhe **TCP personalizad** com a porta deseja, mas na lupa lateral, 
-
-f) Confirma no botão laranja a criação do ELB.
+h.10) Confirme se seu **Registrar destinos** deu certo, clicando em **Grupo de destino** no menu vertical esquerdo. Clique no apelido dado **GrupoDestino-ELB** e logo abaixo, em **Destinos registrado**, tem que aparecer as duas instâncias EC2 criadas: **Bastion_Host_Publica_ArqCorp** e **EC2_Privado_ArqCorp**. Se não aparecem, clique em **Registrar destinos** e marque as duas instâncias. Daí você pressiona um botão no meio da tela chamado **Incluir como pendente abaixo**, e depois, confirma no botão laranja. Aguarde alguns instantes para iniciar tais conexões entre ELB e instâncias EC2. Contudo, mesmo após aguardar alguns instantes, vai aparecer o status `rgb(9, 105, 218)`**unhealthy**
 
 ## Passo-08: Criando o RDS
 
