@@ -360,19 +360,19 @@ Agora, vamos atualizar as rotas de entrada e saída ou regras de entrada e saíd
 
 b) Volte na tabela de rotas **TabRota_Publica_ArqCorp** para indicar as regras de entrada e saída da sua VPC. Então, vá no menu esquerdo vertical, clique em **Tabela de Rotas** e escolha a **TabRota_Publica_ArqCorp**, e depois, vá na aba **Rotas**. Já existe uma rota padrão interna 192.168.0.0/22 mas isso não dá acesso externo à sua VPC e sim, somente acesso interno. Clique em **Editar rota**, depois **Adicionar rota** e selecione em **destino** 0.0.0.0/0 (que significa qualquer lugar) e em **alvo** você seleciona **Gateway da Internet** e daí vai aparecer a sua o **IGW_ArqCorp**, daí vc o seleciona e coloque para salvar no botão laranja.
 
-Portanto, tudo que for associado à sub-rede pública terá conexão com a Internet a partir de agora.
+Portanto, todas as instância com IP público dentro do sub-rede pública terão conexão com a Internet a partir de agora. Caso um EC2 seja criado nessa sub-rede com IP privado, ainda continuará sem conexão externa.
 
-Nos próxmos passos, você terá que associar um EC2 (que será público) à essa sub-rede pública. E assim, esse EC2 específico terá acesso à Internet ao EC2. Ele se chamará Bastion Host.
+Nos próxmos passos, você terá que associar um EC2 (que será público) à essa sub-rede pública. E assim, esse EC2 específico terá conexão com a Internet. Ele se chamará Bastion Host.
 
 
 # Passo-05: Criando o NAT
 Agora vamos resolver o acesso à Internet da sub-rede privada, porém, acesso de saída. Não de entrada, por enquanto.
 
-a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a sub-rede **pública**. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **Alocar IP elástico**, então clique nesse botão e daí você ter a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
+a) No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a **sub-rede pública**. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **Alocar IP elástico**, então clique nesse botão e daí você terá a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
 
-b) Dessa forma, o NAT vai deixar os pacotes saírem da rede privada, mas não vai permitir acessos de fora para dentro. Mas ainda temos um detalhe para definir que é criar uma rota na sua **TabRota_Privada_ArqCorp**. Então, no meu vertical esquerdo da sua VPC, clique em **Tabela de rotas**, clique no link azul **TabRota_Privada_ArqCorp** e daí, **Editar rotas**, clique no botão **Adicionar rotas**, escolha o **Destino 0.0.0.0/0** (Internet externa) e coloque em **Alvo** como **Gateway NAT** (algo do tipo assim **igw-07f8fc3cd3bcc0dc8**). Esse item gasta-se alguns minutos para propagar e começar a funcionar.
+b) Dessa forma, o NAT (uma espécia de proxy de camada 3, roteamento de pacotes) vai controlar o fluxo de acordo com a origem da conexão: conexão de origem interna é permita, conexão de origem externa não é permitida. Mas ainda temos um detalhe para definir que é criar uma rota na sua **TabRota_Privada_ArqCorp**. Então, no meu vertical esquerdo da sua VPC, clique em **Tabela de rotas**, clique no link azul **TabRota_Privada_ArqCorp** e daí, **Editar rotas**, clique no botão **Adicionar rotas**, escolha o **Destino 0.0.0.0/0** (Internet externa) e coloque em **Alvo** como **Gateway NAT** (algo do tipo assim **igw-07f8fc3cd3bcc0dc8** vai aparecer). Esse item gasta-se alguns minutos para propagar e começar a funcionar.
 
-Conclusão: sem essa etapa, o EC2 privado não poderá ser atualizado. 
+Conclusão: sem essa etapa, o EC2 privado não poderá ser atualizado, isto é, não poderá originalizar conexões para fora da VPC (Internet).
 
 ### Pronto! Suas sub-redes públicas e privadas estão ok agora!
 
@@ -385,29 +385,9 @@ a) Buscando por EC2 na lupa do console, crie uma instância que será pública (
 
 Mas atenção: esse IP público que você está recebendo agora nessa instância vai mudar se você desligar o EC2.
 
-Outro ponto importante: para fazer sentido usar o Bastion Host, a imagem do sistema operacional dos demais EC2 internos (que você vai criar no próximo passo) deve ter o que chamamos de **Gold Image**:
-
-Uma "Gold Image" é uma boa prática no ambiente da AWS que se refere a uma imagem de máquina virtual (VM) pré-configurada que serve como uma base para a criação de novas instâncias. Essa imagem contém um sistema operacional e, muitas vezes, software pré-instalado, configurações otimizadas e possivelmente até mesmo dados ou configurações específicas da aplicação.
-
-A ideia por trás de uma **gold image** é criar uma imagem de referência padronizada que possa ser usada para provisionar rapidamente novas instâncias. Isso é especialmente útil quando você tem várias instâncias que precisam ter a mesma configuração básica, como ambientes de desenvolvimento, testes ou produção. Algumas vantagens de usar gold images na AWS incluem:
-
-* Consistência: Ao usar uma gold image, você garante que todas as instâncias criadas a partir dela tenham a mesma configuração, o que ajuda a evitar inconsistências e problemas de configuração.
-
-* Eficiência: A criação de novas instâncias a partir de uma gold image economiza tempo, pois você não precisa configurar manualmente cada instância.
-
-* Padronização: Uma gold image permite que você defina um padrão específico para suas instâncias, garantindo que todas sigam as mesmas diretrizes de configuração.
-
-* Rápido Provisionamento: Como a imagem já contém o sistema operacional e as configurações básicas, a criação de novas instâncias é mais rápida do que começar do zero.
-
-* Reprodutibilidade: Se você precisar escalar rapidamente ou substituir instâncias existentes, usar uma gold image facilita a recriação de ambientes consistentes.
-
-Para criar uma **gold image** na AWS, você geralmente inicia uma instância EC2, configura-a conforme suas necessidades (instalando software, configurando as opções do sistema operacional, etc.) e, em seguida, cria uma imagem personalizada a partir dessa instância. Essa imagem pode ser armazenada no Amazon Machine Image (AMI) e ser usada para lançar novas instâncias com base na configuração definida.
-
-Ter uma abordagem de **gold image** é especialmente benéfico em ambientes em nuvem, onde a escalabilidade e a automação são fundamentais. Isso ajuda a reduzir o esforço manual, melhorar a consistência do ambiente e agilizar a implantação de recursos.
-
 ## Passo-08: Criando outro EC2 - Servidor (privado)
 
-a) Faça o mesm para o EC2 privado criando uma nova instância, nomeie-a como **EC2_Privado_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Privado_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **desabilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Privado** habilite as opções o **SSH** e adicione **HTTP** e a origem, você aponte para **GS_EC2Publico** e **HTTPS** e **0.0.0.0/0** e confirme no botão laranja.
+a) Faça o mesmo para o EC2 privado criando uma nova instância, nomeie-a como **EC2_Privado_ArqCorp**, escolha **Ubuntu**, deixe como **Tipo de instância** qualificada para o nível gratuito, gere uma par de chave com o nome **PEM_EC2Privado_ArqCorp**, edite as opções de **Configurações de rede**, aponte para a **VPC_Arquitetura_Corp**, aponte para sub-rede privada recém criada, deixe **Atribuir IP público automaticamente** no **desabilitar**, no **Firewall** deixe marcado a opção **Criar grupo de segurança**, coloque um nome no seu **Grupo de segurança** como **GS_EC2Privado** habilite as opções o **SSH** e aponte **GS_EC2Publico**. Você pode adicionar,  adicione **HTTP** e a origem, você aponte para **GS_EC2Publico** e **HTTPS** e **0.0.0.0/0** e confirme no botão laranja.
 
 ## Passo-08 (testes):
 
@@ -430,6 +410,27 @@ Conclusões: seu EC2 público está protegendo o EC2 interno. Você pode ter qua
 g) Outro teste é o EC2 privado não consegue acessar a Internet para se atualizar. Então o NAT Gateway precisa enchegar esse caminho para fora. Da forma que está agora, não consiguiremos atualizar nada no EC2 privado. **O segredo é assossiar o NAT Gateway à sub-rede pública** que você fez no Passo-05 (b). 
 
 i) **Tente atualizar o Ubuntu do seu EC2 interno** que vai dar certo [sudo apt-get update]. E se você tentar acessar o EC2 privado usando qualquer IP (público ou privado), não vai funcionar porque o NAT Gateway só permite o fluxo de dentro para fora e não de fora para dentro.
+
+Outro ponto importante: para fazer sentido usar o Bastion Host, a imagem do sistema operacional dos demais EC2 internos (que você vai criar no próximo passo) deve ter o que chamamos de **Gold Image**:
+
+Uma "Gold Image" é uma boa prática no ambiente da AWS que se refere a uma imagem de máquina virtual (VM) pré-configurada que serve como uma base para a criação de novas instâncias. Essa imagem contém um sistema operacional e, muitas vezes, software pré-instalado, configurações otimizadas e possivelmente até mesmo dados ou configurações específicas da aplicação.
+
+A ideia por trás de uma **gold image** é criar uma imagem de referência padronizada que possa ser usada para provisionar rapidamente novas instâncias. Isso é especialmente útil quando você tem várias instâncias que precisam ter a mesma configuração básica, como ambientes de desenvolvimento, testes ou produção. Algumas vantagens de usar gold images na AWS incluem:
+
+* Consistência: Ao usar uma gold image, você garante que todas as instâncias criadas a partir dela tenham a mesma configuração, o que ajuda a evitar inconsistências e problemas de configuração.
+
+* Eficiência: A criação de novas instâncias a partir de uma gold image economiza tempo, pois você não precisa configurar manualmente cada instância.
+
+* Padronização: Uma gold image permite que você defina um padrão específico para suas instâncias, garantindo que todas sigam as mesmas diretrizes de configuração.
+
+* Rápido Provisionamento: Como a imagem já contém o sistema operacional e as configurações básicas, a criação de novas instâncias é mais rápida do que começar do zero.
+
+* Reprodutibilidade: Se você precisar escalar rapidamente ou substituir instâncias existentes, usar uma gold image facilita a recriação de ambientes consistentes.
+
+Para criar uma **gold image** na AWS, você geralmente inicia uma instância EC2, configura-a conforme suas necessidades (instalando software, configurando as opções do sistema operacional, etc.) e, em seguida, cria uma imagem personalizada a partir dessa instância. Essa imagem pode ser armazenada no Amazon Machine Image (AMI) e ser usada para lançar novas instâncias com base na configuração definida. Isso são dicas para boas práticas para o futuro dos seus estudos.
+
+Ter uma abordagem de **gold image** é especialmente benéfico em ambientes em nuvem, onde a escalabilidade e a automação são fundamentais. Isso ajuda a reduzir o esforço manual, melhorar a consistência do ambiente e agilizar a implantação de recursos.
+
 
 # Passo-09: Criando um serviço S3
 ## Por padrão, todo S3 é totalmente bloqueado. Sua função agora é liberar as devidas funções dele.
