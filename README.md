@@ -598,7 +598,9 @@ Todas as requisições externas da sua arquitetura vão entrar em um ELB para de
 a) Busque por **EC2** na lupa da AWS, e no menu esquerdo vertical, procure por **Load balancers**. Você terá 3 opções no seu console: 
 
 **1) Application Load Balancer** >> quando precisar de um conjunto de recursos flexível para suas aplicações com tráfego HTTP e HTTPS, com API e entregas de conteúdos estáticos.
+
 **2) Network Load Balancer** >> quando precisar de desempenho altíssimo e de baixo nível, como sockets, descarga de TLS em escala, implantação de certificados centralizada, suporte para UDP e endereços IP estáticos para sua aplicação.
+
 **3) Gateway Load Balancer** >> quando precisar implantar e gerenciar uma frota de dispositivos virtuais de terceiros compatíveis com GENEVE. Esses dispositivos permitem que você melhore a segurança, a conformidade e os controles de políticas.
 
 **Escolha a opção (1)**
