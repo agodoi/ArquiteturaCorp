@@ -411,11 +411,13 @@ g) Outro teste é o EC2 privado não consegue acessar a Internet para se atualiz
 
 i) **Tente atualizar o Ubuntu do seu EC2 interno** que vai dar certo [sudo apt-get update]. E se você tentar acessar o EC2 privado usando qualquer IP (público ou privado), não vai funcionar porque o NAT Gateway só permite o fluxo de dentro para fora e não de fora para dentro.
 
+## Conceito Importante sobre imagem do EC2:
+
 Outro ponto importante: para fazer sentido usar o Bastion Host, a imagem do sistema operacional dos demais EC2 internos (que você vai criar no próximo passo) deve ter o que chamamos de **Gold Image**:
 
-Uma "Gold Image" é uma boa prática no ambiente da AWS que se refere a uma imagem de máquina virtual (VM) pré-configurada que serve como uma base para a criação de novas instâncias. Essa imagem contém um sistema operacional e, muitas vezes, software pré-instalado, configurações otimizadas e possivelmente até mesmo dados ou configurações específicas da aplicação.
+Uma **Gold Image** é uma boa prática no ambiente da AWS que se refere a uma imagem de máquina virtual (VM) pré-configurada que serve como uma base para a criação de novas instâncias. Essa imagem contém um sistema operacional e, muitas vezes, software pré-instalado, configurações otimizadas e possivelmente até mesmo dados ou configurações específicas da aplicação.
 
-A ideia por trás de uma **gold image** é criar uma imagem de referência padronizada que possa ser usada para provisionar rapidamente novas instâncias. Isso é especialmente útil quando você tem várias instâncias que precisam ter a mesma configuração básica, como ambientes de desenvolvimento, testes ou produção. Algumas vantagens de usar gold images na AWS incluem:
+A ideia por trás de uma **Gold Image** é criar uma imagem de referência padronizada que possa ser usada para provisionar rapidamente novas instâncias. Isso é especialmente útil quando você tem várias instâncias que precisam ter a mesma configuração básica, como ambientes de desenvolvimento, testes ou produção. Algumas vantagens de usar gold images na AWS incluem:
 
 * Consistência: Ao usar uma gold image, você garante que todas as instâncias criadas a partir dela tenham a mesma configuração, o que ajuda a evitar inconsistências e problemas de configuração.
 
@@ -425,11 +427,11 @@ A ideia por trás de uma **gold image** é criar uma imagem de referência padro
 
 * Rápido Provisionamento: Como a imagem já contém o sistema operacional e as configurações básicas, a criação de novas instâncias é mais rápida do que começar do zero.
 
-* Reprodutibilidade: Se você precisar escalar rapidamente ou substituir instâncias existentes, usar uma gold image facilita a recriação de ambientes consistentes.
+* Reprodutibilidade: Se você precisar escalar rapidamente ou substituir instâncias existentes, usar uma *gold image* facilita a recriação de ambientes consistentes.
 
-Para criar uma **gold image** na AWS, você geralmente inicia uma instância EC2, configura-a conforme suas necessidades (instalando software, configurando as opções do sistema operacional, etc.) e, em seguida, cria uma imagem personalizada a partir dessa instância. Essa imagem pode ser armazenada no Amazon Machine Image (AMI) e ser usada para lançar novas instâncias com base na configuração definida. Isso são dicas para boas práticas para o futuro dos seus estudos.
+Para criar uma **Gold Image** na AWS, você geralmente inicia uma instância EC2, configura-a conforme suas necessidades (instalando software, configurando as opções do sistema operacional, etc.) e, em seguida, cria uma imagem personalizada a partir dessa instância. Essa imagem pode ser armazenada no Amazon Machine Image (AMI) e ser usada para lançar novas instâncias com base na configuração definida. Isso são dicas para boas práticas para o futuro dos seus estudos.
 
-Ter uma abordagem de **gold image** é especialmente benéfico em ambientes em nuvem, onde a escalabilidade e a automação são fundamentais. Isso ajuda a reduzir o esforço manual, melhorar a consistência do ambiente e agilizar a implantação de recursos.
+Ter uma abordagem de **Gold Image** é especialmente benéfico em ambientes em nuvem, onde a escalabilidade e a automação são fundamentais. Isso ajuda a reduzir o esforço manual, melhorar a consistência do ambiente e agilizar a implantação de recursos.
 
 
 # Passo-09: Criando um serviço S3
