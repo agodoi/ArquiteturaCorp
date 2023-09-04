@@ -308,7 +308,7 @@ g) As demais opções, você não precisa mexer e basta confirmar no botão lara
 # Passo-02: Criando as sub-redes
 ## sub-rede pública
 
-a) No menu vertical da VPC, clique em **sub-redes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
+a) No menu vertical da VPC, clique em **sub-redes** e então, clique em **Criar sub-redes** e aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
 
 b) No campo **Nome da sub-rede** coloque **Sub_Publica_a**.
 
