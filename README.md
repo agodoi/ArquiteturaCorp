@@ -376,9 +376,9 @@ Nos próxmos passos, você terá que associar um EC2 (que será público) à ess
 # Passo-05: Criando o NAT
 Agora vamos resolver o acesso à Internet da sub-rede privada, porém, acesso de saída. Não de entrada, por enquanto.
 
-**5.1)** No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a **sub-rede privada**. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **Alocar IP elástico**, então clique nesse botão **Alocar IP elástico** e daí você terá a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
+**5.1)** No menu vertical da VPC, clique no botão **NAT**, depois clique no botão **Criar gateway NAT**, e depois, em nome coloque **NAT_ArqCorp** e na opção **sub-rede** você aponta para a **sub-rede pública**. Note que existe uma opção chamada **Tipo de conexão** que já está pré-marcada em **Público** e é isso que garante que sua sub-rede privada poderá acessar à Internet. Existe a opção também de **Alocar IP elástico**, então clique nesse botão **Alocar IP elástico** para gerar um IP elástico e daí você terá a opção como **eipalloc-xxxxxxxx**. Finalmente, clique no botão laranja para confirmar tudo.
 
-**5.2)** Dessa forma, o NAT (uma espécia de proxy de camada 3, roteamento de pacotes) vai controlar o fluxo de acordo com a origem da conexão: conexão de origem interna é permita, conexão de origem externa não é permitida. Mas ainda temos um detalhe para definir que é criar uma rota na sua **TabRota_Privada_ArqCorp**. Então, no meu vertical esquerdo da sua VPC, clique em **Tabela de rotas**, clique no link azul **TabRota_Privada_ArqCorp** e daí, **Editar rotas**, clique no botão **Adicionar rotas**, escolha o **Destino 0.0.0.0/0** (Internet externa) e coloque em **Alvo** como **Gateway NAT** (algo do tipo assim **nat-0f1c0fbcfded07cf8** vai aparecer). Esse item gasta-se alguns minutos para propagar e começar a funcionar.
+**5.2)** Dessa forma, o NAT (uma espécia de proxy de camada 3, roteamento de pacotes) vai controlar o fluxo de acordo com a origem da conexão: conexão de origem interna é permita, conexão de origem externa não é permitida. Mas ainda temos um detalhe para definir que é criar uma rota na sua **TabRota_Privada_ArqCorp**. Então, no meu vertical esquerdo da sua VPC, clique em **Tabela de rotas**, clique no link azul **TabRota_Privada_ArqCorp** e daí, **Editar rotas**, clique no botão **Adicionar rotas**, escolha o **Destino 0.0.0.0/0** (Internet externa) e coloque em **Alvo** como **Gateway NAT** (algo do tipo assim **nat-0f1c0fbcfded07cf8** vai aparecer). **Esse item gasta-se alguns minutos para propagar e começar a funcionar.**
 
 Conclusão: sem essa etapa, o EC2 privado não poderá ser atualizado, isto é, não poderá originalizar conexões para fora da VPC (Internet).
 
@@ -411,11 +411,11 @@ Confira se seu EC2 privado (que é um servidor interno) está acessível a parti
 
 **8.5)** Você deve estar dentro do EC2 interno usando o EC2 externo.
 
-**8.6)** Agora tente acessar o seu EC2 interno como se fosse o EC2 externo, isto é, execute o item (a) dessa passo mas usando o IP privado do botão **Conectar** do seu EC2 privado. Funcionou? Não! Por que? Seu EC2 interno possui IP público? Ele está com acesso ao IGW do EC2 externo? Não!
+**8.6)** Agora tente acessar o seu EC2 interno como se fosse o EC2 externo, isto é, execute o item **(8.1)** dessa passo mas usando o IP privado do botão **Conectar** do seu EC2 privado. Funcionou? Não! Por que? Seu EC2 interno possui IP público? Ele está com acesso ao IGW do EC2 externo? Não!
 
 Conclusões: seu EC2 público está protegendo o EC2 interno. Você pode ter quantos EC2 internos desejar. Basta armazenar as chaves internas dentro do EC2 público. Mas cuidado com os acessos do EC2 público. Ele está como regra de entrada o 0.0.0.0/0 e isso não é legal. O correto é você colocar o IP fixo externo da sua empresa. Assim, somente os DEVOPS vão acessar esse EC2 externo.
 
-**8.7)** Outro teste é o EC2 privado não consegue acessar a Internet para se atualizar. Então o NAT Gateway precisa enchegar esse caminho para fora. Da forma que está agora, não consiguiremos atualizar nada no EC2 privado. **O segredo é assossiar o NAT Gateway à sub-rede pública** que você fez no Passo-05 (b). 
+**8.7)** Outro teste é o EC2 privado não consegue acessar a Internet para se atualizar. Então o NAT Gateway precisa enchegar esse caminho para fora. Da forma que está agora, não consiguiremos atualizar nada no EC2 privado. **O segredo é assossiar o NAT Gateway à sub-rede pública** que você fez no Passo-05 **5.2**. 
 
 **8.8)** **Tente atualizar o Ubuntu do seu EC2 interno** que vai dar certo [sudo apt-get update]. E se você tentar acessar o EC2 privado usando qualquer IP (público ou privado), não vai funcionar porque o NAT Gateway só permite o fluxo de dentro para fora e não de fora para dentro.
 
