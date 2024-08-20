@@ -659,8 +659,8 @@ Seu ELB está praticamente pronto, basta fazer a conexão de saúde com uma apli
 
 Para criar o RDS, você precisa criar uma VPC com 2 zonas como vimos na aula já explorada: [EC2-RDS](https://github.com/agodoi/EC2-RDS). 
 
-Portanto, para o seu RDS funcionar, essa VPC de hoje não terá suporte.
+Portanto, para o seu RDS funcionar, essa VPC de hoje não terá suporte, porque criamos apenas 1 zona.
 
-Mas calma! Antes de surtar e descobrir que seu serviço de hoje não suporta o RDS, existe um passo que cria a VPC + IGW + NAT + 2 subRedes Privadas + 2 subRedes Públicas. 
+Mas calma! Antes de surtar e descobrir que seu serviço de hoje foi em vão e não suporta o RDS, existe um passo que cria a VPC + IGW + NAT + 2 subRedes Privadas + 2 subRedes Públicas automaticamente. 
 
 Vá em **VPC** e crie uma nova **VPC**, mas clique em **VPC e muito mais** e coloque algumas configurações eventualmente solicitadas iguais às configurações dos Passos 1 e 2. 
