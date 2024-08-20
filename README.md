@@ -486,6 +486,8 @@ Esse S3 serve para você adicionar seu site estático e não arquivos corporativ
 
 **9.7)** Você pode carregar um arquivo qualquer no seu S3, clicando em **Objetos**. E ainda pode criar uma pasta qualquer chamada **Teste**. Então, suba um arquivo qualquer e crie uma pasta qualquer em seu S3. Veja a figura a seguir que demonstra como fica o seu HD virtual lá na AWS.
 
+**9.8)** Você precisa liberar acesso ao público do S3. Vá no botão **Permissões**, depois em **Bloquear acesso público (configurações do bucket)** clique em **Editar**, depois desmarque **Bloquear todo o acesso público** e **Salvar alterações** e digite **confirmar**.
+
 
 <picture>
    <source media="(prefers-color-scheme: light)" srcset="https://github.com/agodoi/ARQUITETURA/blob/main/imgs/objetos.png">
