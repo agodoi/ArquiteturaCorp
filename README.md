@@ -328,7 +328,7 @@ O RDS é compatível com muitas ferramentas e aplicativos que são usados com ba
 
 **2.5)** No menu vertical da VPC, clique em **sub-redes** e então, aponte para a VPC corporativa que acabou de criar **VPC_Arquitetura_Corp**.
 
-**2.6)** No campo **Nome da sub-rede** coloque **Sub_Privada_b**. Note que você está apontado para uma zona diferente da sua sub-rede pública. É uma estratégia para 
+**2.6)** No campo **Nome da sub-rede** coloque **Sub_Privada_a**. Note que você está apontado para uma zona diferente da sua sub-rede pública. É uma estratégia para 
 [alta disponibilidade](https://github.com/agodoi/VocabularioAWS).
 
 **2.7)** Em **Zona de disponibilidade** deixe **us-east-1b**.
